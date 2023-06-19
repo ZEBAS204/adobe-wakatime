@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="index.js"></script>
+	</head>
+	<style>
+		body {
+			background-color: var(--uxp-host-background-color);
+			color: var(--uxp-host-text-color);
+			border-color: var(--uxp-host-border-color);
+			font-size: var(--uxp-host-font-size);
+			padding: 0 16px;
+		}
+
+		#waka_error_msg {
+			color: red;
+			font-weight: bold;
+		}
+	</style>
+	<body>
+		<sp-heading>WakaTime Api Key</sp-heading>
+		<sp-body>
+			<span>Enter your api key from</span>
+			<a href="https://wakatime.com/settings">https://wakatime.com/settings</a>
+		</sp-body>
+		<sp-body>
+			<sp-textfield id="waka_key" type="password">
+        <sp-label slot="label">API key</sp-labe>
+			</sp-textfield>
+		</sp-body>
+		<sp-body id="waka_error_msg"></sp-body>
+		<footer>
+			<sp-button id="waka_submitkey">Save</sp-button>
+			<sp-button id="waka_gettkey">GET</sp-button>
+		</footer>
+	</body>
+</html>

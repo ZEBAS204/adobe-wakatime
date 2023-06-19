@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"strict": false,
+		"noImplicitAny": true,
+		"module": "CommonJS",
+		"target": "es5",
+		"allowJs": true,
+		"moduleResolution": "node"
+	}
+}
