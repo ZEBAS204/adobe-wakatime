@@ -4,6 +4,7 @@
   "description": "Wakatime plugin to track time spend on Photoshop",
   "license": "MIT",
   "scripts": {
+    "watch": "webpack watch",
     "build": "webpack"
   },
   "devDependencies": {
