@@ -6,10 +6,18 @@
   "host": [
     {
       "app": "PS",
-      "minVersion": "22"
+      "minVersion": "23.0.0"
     }
   ],
-  "manifestVersion": 4,
+  "manifestVersion": 5,
+  "requiredPermissions": {
+    "network": {
+      "domains": [
+        "https://wakatime.com",
+        "https://api.wakatime.com"
+      ]
+    }
+  },
   "entrypoints": [
     {
       "type": "panel",
