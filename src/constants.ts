@@ -12,3 +12,10 @@ export enum ELEMENTS {
 	API_CONNECTION_STATUS = 'connectionStatus',
 }
 
+export enum STATUS {
+	BAD_REQUEST,
+	INVALID_API_KEY,
+	NO_API_KEY_PROVIDED,
+	UNAUTHORIZED,
+	CONNECTED,
+}
