@@ -12,64 +12,105 @@
 			padding: 0 16px;
 		}
 
+		.wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow: auto;
+			padding: 16px;
+			display: flex;
+			flex-direction: column;
+		}
+		.wrapper > * {
+			flex: 0 0 auto;
+			margin: 4px 0;
+		}
+
+		.small_text {
+			color: var(--uxp-host-text-color-secondary);
+		}
+
+		.row {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-end;
+		}
+		.row > * {
+			margin: 0 8px;
+		}
+		.row > *:first-child {
+			margin-left: 0;
+		}
+		.row > *:last-child {
+			margin-right: 0;
+		}
+		.row sp-textfield,
+		.row sp-checkbox,
+		.row sp-detail {
+			flex: 1 1 auto;
+		}
+		.row sp-button {
+			flex: 0 0 auto;
+		}
+
 		#waka_error_msg {
 			color: red;
 			font-weight: bold;
 		}
 
-		.status {
-			display: flex;
-			align-items: baseline;
-			justify-content: space-evenly;
-			padding: 0 12px;
-		}
-
 		#connectionStatus {
-			padding-left: 8px;
+			position: relative;
+			margin-left: 1.5em;
 		}
-
-		#connectionStatusLight {
+		#connectionStatus:before {
+			content: '';
+			position: absolute;
+			left: -1.5em;
+			top: 0.5em;
 			width: 1em;
 			height: 1em;
-			border-radius: 1em;
+			border-radius: 0.5em;
+			border: 1px solid rgba(255, 255, 255, 0.25);
 		}
-
-		#connectionStatusLight.negative {
-			background-color: #91181e;
+		#connectionStatus.negative:before {
+			background-color: red;
 		}
-
-		#connectionStatusLight.positive {
-			background-color: #247e60;
+		#connectionStatus.positive:before {
+			background-color: green;
 		}
-
-		#connectionStatusLight.unauthorized {
+		#connectionStatus.unauthorized:before {
 			background-color: #ca6608;
 		}
 	</style>
 	<body>
-		<sp-heading>WakaTime Api Key</sp-heading>
-		<sp-body>
-			<span>Enter your api key from</span>
-			<a href="https://wakatime.com/api-key">https://wakatime.com/api-key</a>
+		<div class="wrapper">
+			<sp-heading>WakaTime Tracker</sp-heading>
 			<sp-divider></sp-divider>
-		</sp-body>
-
-		<div class="status">
-			<sp-detail size="xs">STATUS</sp-detail>
-			<div class="status">
-				<sp-body id="connectionStatusLight" class="negative"></sp-body>
-				<sp-body size="xs" id="connectionStatus">Disconnected</sp-body>
+			<div class="row">
+				<sp-textfield placeholder="API key" id="waka_key" type="password">
+					<sp-label slot="label">Your API key</sp-label>
+				</sp-textfield>
+				<sp-button id="waka_submitkey">Save</sp-button>
 			</div>
+
+			<div class="row" style="margin-top: 10px">
+				<sp-detail>STATUS</sp-detail>
+				<sp-body size="XS" id="connectionStatus" class="negative"
+					>Disconnected</sp-body
+				>
+			</div>
+
+			<sp-body id="waka_error_msg"></sp-body>
+
+			<div style="flex: 1 1 auto"></div>
+
+			<sp-body class="small_text" size="xs">
+				<sp-divider></sp-divider>
+				<span>You can find your API key at</span>
+				<a href="https://wakatime.com/api-key">https://wakatime.com/api-key</a>
+			</sp-body>
 		</div>
-		<sp-divider></sp-divider>
-		<sp-body>
-			<sp-textfield id="waka_key" type="password">
-        <sp-label slot="label">API key</sp-labe>
-			</sp-textfield>
-		</sp-body>
-		<sp-body id="waka_error_msg"></sp-body>
-		<footer>
-			<sp-button id="waka_submitkey">Save</sp-button>
-		</footer>
 	</body>
 </html>
