@@ -1,11 +1,14 @@
 import { storage } from 'uxp'
+import { CONFIG, ELEMENTS } from './constants'
 const secureStorage = storage.secureStorage
 
 let API_CACHE: string | null
 
 export const saveSecureKey = async (): Promise<void> => {
-	const userInput = document.getElementById('waka_key') as HTMLInputElement
-	const errorMessage = document.getElementById('waka_error_msg')
+	const userInput = document.getElementById(
+		ELEMENTS.API_KEY_INPUT
+	) as HTMLInputElement
+	const errorMessage = document.getElementById(ELEMENTS.INPUT_ERROR_MESSAGE)
 
 	//* MAC bug fix: can't read input as password.
 	userInput.type = 'text'
@@ -20,14 +23,14 @@ export const saveSecureKey = async (): Promise<void> => {
 	errorMessage.textContent = ''
 
 	API_CACHE = key
-	await secureStorage.setItem('secure_wakatime_key', key)
+	await secureStorage.setItem(CONFIG.STORAGE_API_KEY, key)
 }
 
 export const getApiKey = async () => {
 	if (API_CACHE) return API_CACHE
 
 	// We get the stored value from the secureStorage in the form of a uint8Array.
-	const uintArray = await secureStorage.getItem('secure_wakatime_key')
+	const uintArray = await secureStorage.getItem(CONFIG.STORAGE_API_KEY)
 	// We convert the uint8Array to a string to present it to the user.
 	let secureKey = ''
 	for (let i of uintArray) secureKey += String.fromCharCode(i)

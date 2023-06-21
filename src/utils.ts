@@ -1,5 +1,14 @@
 import * as fs from 'fs'
 import { homedir } from 'os'
+import { ELEMENTS } from './constants'
+
+export const updateConnectionStatus = (isConnected: boolean) => {
+	const connectionStatus = document.getElementById(
+		ELEMENTS.API_CONNECTION_STATUS
+	)
+	connectionStatus.innerText = isConnected ? 'Connected' : 'Disconnected'
+	connectionStatus.setAttribute('class', isConnected ? 'positive' : 'negative')
+}
 
 let CLI_DIR_CACHE: string = null
 export const getCLIDir = async (): Promise<string | null> => {
