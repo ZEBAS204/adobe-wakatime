@@ -51,7 +51,9 @@
 		.row sp-detail {
 			flex: 1 1 auto;
 		}
-		.row sp-button {
+		.row sp-button,
+		.row sp-action-button {
+			margin: 0;
 			flex: 0 0 auto;
 		}
 
@@ -62,7 +64,6 @@
 
 		#connectionStatus {
 			position: relative;
-			margin-left: 1.5em;
 		}
 		#connectionStatus:before {
 			content: '';
@@ -86,28 +87,28 @@
 	</style>
 	<body>
 		<div class="wrapper">
-			<sp-heading>WakaTime Tracker</sp-heading>
+			<div class="row">
+				<sp-detail>Status</sp-detail>
+				<sp-body size="xs" id="connectionStatus" class="negative">
+					Disconnected
+				</sp-body>
+			</div>
+
 			<sp-divider></sp-divider>
+
+			<sp-checkbox id="waka_enabled" checked="true">Plugin enabled</sp-checkbox>
+
 			<div class="row">
 				<sp-textfield placeholder="API key" id="waka_key" type="password">
 					<sp-label slot="label">Your API key</sp-label>
 				</sp-textfield>
 				<sp-button id="waka_submitkey">Save</sp-button>
 			</div>
-
-			<div class="row" style="margin-top: 10px">
-				<sp-detail>STATUS</sp-detail>
-				<sp-body size="XS" id="connectionStatus" class="negative"
-					>Disconnected</sp-body
-				>
-			</div>
-
 			<sp-body id="waka_error_msg"></sp-body>
 
 			<div style="flex: 1 1 auto"></div>
 
 			<sp-body class="small_text" size="xs">
-				<sp-divider></sp-divider>
 				<span>You can find your API key at</span>
 				<a href="https://wakatime.com/api-key">https://wakatime.com/api-key</a>
 			</sp-body>
