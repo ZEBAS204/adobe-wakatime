@@ -16,13 +16,52 @@
 			color: red;
 			font-weight: bold;
 		}
+
+		.status {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-evenly;
+			padding: 0 12px;
+		}
+
+		#connectionStatus {
+			padding-left: 8px;
+		}
+
+		#connectionStatusLight {
+			width: 1em;
+			height: 1em;
+			border-radius: 1em;
+		}
+
+		#connectionStatusLight.negative {
+			background-color: #91181e;
+		}
+
+		#connectionStatusLight.positive {
+			background-color: #247e60;
+		}
+
+		#connectionStatusLight.unauthorized {
+			background-color: #ca6608;
+		}
 	</style>
 	<body>
 		<sp-heading>WakaTime Api Key</sp-heading>
 		<sp-body>
 			<span>Enter your api key from</span>
 			<a href="https://wakatime.com/api-key">https://wakatime.com/api-key</a>
+			<sp-divider></sp-divider>
 		</sp-body>
+
+		<div class="status">
+			<sp-detail size="xs">STATUS</sp-detail>
+			<div class="status">
+				<sp-body id="connectionStatusLight" class="negative"></sp-body>
+				<sp-body size="xs" id="connectionStatus">Disconnected</sp-body>
+			</div>
+		</div>
+		<sp-divider></sp-divider>
 		<sp-body>
 			<sp-textfield id="waka_key" type="password">
         <sp-label slot="label">API key</sp-labe>
@@ -31,7 +70,6 @@
 		<sp-body id="waka_error_msg"></sp-body>
 		<footer>
 			<sp-button id="waka_submitkey">Save</sp-button>
-			<sp-button id="waka_gettkey">GET</sp-button>
 		</footer>
 	</body>
 </html>
