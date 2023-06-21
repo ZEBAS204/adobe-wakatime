@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
+		"outDir": "./plugin/",
 		"strict": false,
 		"noImplicitAny": true,
 		"module": "CommonJS",
