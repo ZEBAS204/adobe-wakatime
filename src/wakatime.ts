@@ -1,4 +1,4 @@
-import { host, versions } from 'uxp'
+const { host, versions } = require('uxp')
 import { platform, arch } from 'os'
 import { getApiKey } from './storage'
 import { CONFIG, STATUS } from './constants'

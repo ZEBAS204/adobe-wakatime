@@ -1,6 +1,5 @@
-import { storage } from 'uxp'
+const { secureStorage } = require('uxp').storage
 import { CONFIG, ELEMENTS } from './constants'
-const secureStorage = storage.secureStorage
 
 let API_CACHE: string | null
 
