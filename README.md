@@ -21,7 +21,7 @@ While older versions may also work, please note that they are not officially sup
 
 ## Installation
 
-1. Download the latest version of the plugin from the [Releases page]() or [click here to download directly]().
+1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
 2. Locate the plugins folder:
   - **Windows:** `C:\Program Files\Adobe\Adobe Photoshop 20xx\Plug-ins/`
   - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
