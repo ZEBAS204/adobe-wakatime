@@ -6,7 +6,9 @@ import { CONFIG, STATUS } from './constants'
 // Wakatime uses the user agent to identify the application, OS and extension.
 const APP_NAME = (host.name as string).toLowerCase()
 const PLUGIN_NAME = `adobe-${APP_NAME}-wakatime`
-const AGENT_OS = `${platform()}_${arch()}`
+// We need to remove any numbers from the platform as win32/win10 is not recognized and will be
+// labeled as Unknown OS. Wakatime accepts {os_name}_{os_version} format.
+const AGENT_OS = `${platform().replace(/\d/g, '')}_${arch()}`
 const USER_AGENT = `${APP_NAME}/${host.version} ${AGENT_OS} ${PLUGIN_NAME}/${versions.plugin}`
 
 export const sendHeartbeat = async ({
