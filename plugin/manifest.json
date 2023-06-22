@@ -21,7 +21,10 @@
   "entrypoints": [
     {
       "type": "panel",
-      "id": "vanilla",
+      "id": "wakatime",
+      "label": {
+        "default": "Wakatime"
+      },
       "minimumSize": {
         "width": 250,
         "height": 220
@@ -71,10 +74,29 @@
             "generic"
           ]
         }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "width": 48,
+      "height": 48,
+      "path": "icons/plugin-icon.png",
+      "scale": [
+        1,
+        2
       ],
-      "label": {
-        "default": "Wakatime"
-      }
+      "theme": [
+        "darkest",
+        "dark",
+        "medium",
+        "lightest",
+        "light",
+        "all"
+      ],
+      "species": [
+        "pluginList"
+      ]
     }
   ]
 }
