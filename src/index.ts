@@ -1,5 +1,5 @@
 import { app } from 'photoshop'
-import { saveSecureKey } from './storage'
+import { saveSecureKey, saveIsEnabled, isExtensionEnabled } from './storage'
 import { sendHeartbeat } from './wakatime'
 import { updateConnectionStatus } from './utils'
 import { ELEMENTS, CONFIG } from './constants'
@@ -14,8 +14,17 @@ document
 		init()
 	})
 
+document
+	.getElementById(ELEMENTS.EXTENSION_ENABLED_CHECKBOX)
+	?.addEventListener('click', () => {
+		saveIsEnabled()
+		init()
+	})
+
 const init = async () => {
 	clearInterval(intervalRef)
+	if (!isExtensionEnabled()) return
+
 	intervalRef = setInterval(async () => {
 		const activeFile = app.activeDocument.name
 		if (!activeFile) return
@@ -31,5 +40,6 @@ const init = async () => {
 ;(async () => {
 	console.log('[WakaTime] Initializing WakaTime plugin')
 	console.log('[WakaTime] Heartbeat interval:', CONFIG.HEARTBEAT_INTERVAL)
-	init()
+
+	if (isExtensionEnabled()) init()
 })()

@@ -10,6 +10,7 @@ export enum ELEMENTS {
 	API_KEY_SAVE_BTN = 'waka_submitkey',
 	INPUT_ERROR_MESSAGE = 'waka_error_msg',
 	API_CONNECTION_STATUS = 'connectionStatus',
+	EXTENSION_ENABLED_CHECKBOX = 'waka_enabled',
 }
 
 export enum STATUS {

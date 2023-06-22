@@ -36,3 +36,27 @@ export const getApiKey = async () => {
 	API_CACHE = secureKey
 	return secureKey
 }
+
+export const saveIsEnabled = () => {
+	const checkbox = document.getElementById(
+		ELEMENTS.EXTENSION_ENABLED_CHECKBOX
+	) as HTMLInputElement
+
+	const isEnabled = checkbox.checked
+	localStorage.setItem(CONFIG.STORAGE_PLUGIN_ENABLED, isEnabled.toString())
+
+	console.log(`[WakaTime] Extension ${isEnabled ? 'enabled' : 'disabled'}`)
+}
+
+export const isExtensionEnabled = () => {
+	const keyValue = localStorage.getItem(CONFIG.STORAGE_PLUGIN_ENABLED)
+	const isEnabled = keyValue === null ? true : JSON.parse(keyValue)
+
+	// Always sync the checkbox value
+	const checkbox = document.getElementById(
+		ELEMENTS.EXTENSION_ENABLED_CHECKBOX
+	) as HTMLInputElement
+	if (checkbox) checkbox.checked = isEnabled
+
+	return isEnabled
+}
