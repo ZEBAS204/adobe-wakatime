@@ -4,8 +4,9 @@ import { getApiKey } from './storage'
 import { CONFIG, STATUS } from './constants'
 
 // Wakatime uses the user agent to identify the application, OS and extension.
-const APP_NAME = (host.name as string).toLowerCase()
-const PLUGIN_NAME = `adobe-${APP_NAME}-wakatime`
+const APP_NAME = host.name as string
+const APP_NAME_L = APP_NAME.toLocaleLowerCase()
+const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime`
 // We need to remove any numbers from the platform as win32/win10 is not recognized and will be
 // labeled as Unknown OS. Wakatime accepts {os_name}_{os_version} format.
 const AGENT_OS = `${platform().replace(/\d/g, '')}_${arch()}`
@@ -37,7 +38,7 @@ export const sendHeartbeat = async ({
 				time: Math.floor(time / 1000),
 				entity: file,
 				type: 'file',
-				project: `adobe-${APP_NAME}`,
+				project: `adobe-${APP_NAME_L}`,
 				category: 'designing',
 				language: APP_NAME,
 				plugin: PLUGIN_NAME,
