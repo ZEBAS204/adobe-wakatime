@@ -50,8 +50,10 @@ export const sendHeartbeat = async ({
 	)
 		.then((res) => {
 			console.log('[WakaTime] Heartbeat received', res)
-			if (res.status === 401) return STATUS.INVALID_API_KEY
-			if (!res.ok) return STATUS.BAD_REQUEST
+			if (res.status === 500) return STATUS.SERVER_ERROR
+			else if (res.status === 401 || res.status === 403)
+				return STATUS.INVALID_API_KEY
+			else if (!res.ok) return STATUS.BAD_REQUEST
 
 			return STATUS.CONNECTED
 		})

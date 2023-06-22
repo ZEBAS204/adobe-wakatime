@@ -17,6 +17,11 @@ export const updateConnectionStatus = (status: STATUS) => {
 		connectionStatus.setAttribute('class', 'unauthorized')
 		return
 	}
+	if (status === STATUS.SERVER_ERROR) {
+		connectionStatus.innerText = 'Unavailable'
+		connectionStatus.setAttribute('class', 'negative')
+		return
+	}
 
 	connectionStatus.innerText = 'Disconnected'
 	connectionStatus.setAttribute('class', 'negative')
