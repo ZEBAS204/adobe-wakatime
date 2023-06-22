@@ -17,8 +17,10 @@ document
 const init = async () => {
 	clearInterval(intervalRef)
 	intervalRef = setInterval(async () => {
+		const activeFile = app.activeDocument.name
+		if (!activeFile) return
 		const heartbeatResponse = await sendHeartbeat({
-			file: app.activeDocument.name,
+			file: activeFile,
 			time: Date.now(),
 		})
 		console.log('heartbeat response:', heartbeatResponse)
