@@ -22,7 +22,7 @@ export const saveSecureKey = async (): Promise<void> => {
 	errorMessage.textContent = ''
 
 	API_CACHE = key
-	await secureStorage.setItem(CONFIG.STORAGE_API_KEY, key)
+	await secureStorage.setItem(CONFIG.STORAGE_API_KEY, key.trim())
 }
 
 export const getApiKey = async () => {
