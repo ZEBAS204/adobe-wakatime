@@ -3,12 +3,10 @@
   "name": "Wakatime",
   "version": "1.0.0",
   "main": "index.html",
-  "host": [
-    {
-      "app": "PS",
-      "minVersion": "23.0.0"
-    }
-  ],
+  "host": {
+    "app": "PS",
+    "minVersion": "23.0.0"
+  },
   "manifestVersion": 5,
   "requiredPermissions": {
     "network": {
