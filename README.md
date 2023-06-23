@@ -2,12 +2,19 @@
 
 The Wakatime plugin is a powerful integration that brings [Wakatime](https://wakatime.com/)'s time-tracking functionality to Adobe Photoshop.
 
+**Currently supported features:**
+
+- [x] Tracking time (every 2 min)
+- [x] Tracking file path
+- [x] Tracking file name
+
 By default, the plugin will show in your dashboard like this:
 
 - **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
 - **Project name:** `adobe-{app_name}` (lowercase, eg. `adobe-photoshop`)
 - **Editor:** `Adobe-{app_name}` (uppercase, eg. `Adobe-Photoshop`)
 - **Category:** Designing
+- **Machine:** `Unknown Hostname` - You will have to manually specify it!
 
 You can modify the project names, languages, category, etc. using the [Custom rules](https://wakatime.com/settings/rules) in your dashboard.
 
@@ -16,8 +23,8 @@ You can modify the project names, languages, category, etc. using the [Custom ru
 This plugin uses **Adobe Manifest v5**. Versions after `23.3.0` (UXP 6.0 or higher) should work as intended.
 While older versions may also work, please note that they are not officially supported.
 
-> **NOTE**
-> Requires an internet connection and **will not track** time while offline.
+> **Warning**
+> This plugin requires an internet connection and **will not track** time while offline.
 
 ## Installation
 
@@ -55,9 +62,10 @@ While older versions may also work, please note that they are not officially sup
 ### Prerequisites
 
 1. Install [Adobe UXP Developer Tool](https://github.com/adobe-uxp/devtools-cli). Please, follow the instructions in the repository.
-2. Load this plugin directly in Photoshop using the UXP Developer Tools application. Once started, click "Add Plugin..." and navigate to the "[manifest.json](plugin/manifest.json)" file in this folder.
-3. If the plugin was not automatically loaded, click "Load" in the action dropdown menu (three dots)
-4. Click "Watch" in the action dropdown menu (three dots)
+2. Enable Photoshop Developer Mode, go to **Edit > Preferences > Plugins > Enable Developer Mode** (you will need to relaunch Photoshop for the changes to take effect)
+3. Load this plugin directly in Photoshop using the UXP Developer Tools application. Once started, click "Add Plugin..." and navigate to the "[manifest.json](plugin/manifest.json)" file in this folder.
+4. If the plugin was not automatically loaded, click "Load" in the action dropdown menu (three dots)
+5. Click "Watch" in the action dropdown menu (three dots)
 
 ### Installation
 
