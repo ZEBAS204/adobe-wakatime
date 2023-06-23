@@ -26,7 +26,7 @@ const init = async () => {
 	if (!isExtensionEnabled()) return
 
 	intervalRef = setInterval(async () => {
-		const activeFile = app.activeDocument.name
+		const activeFile = app.activeDocument.path || app.activeDocument.name
 		if (!activeFile) return
 		const heartbeatResponse = await sendHeartbeat({
 			file: activeFile,
