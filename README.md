@@ -11,7 +11,7 @@ The Wakatime plugin is a powerful integration that brings [Wakatime](https://wak
 By default, the plugin will show in your dashboard like this:
 
 - **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
-- **Project name:** `adobe-{app_name}` (lowercase, eg. `adobe-photoshop`)
+- **Project name:** `Adobe {app_name}` (lowercase, eg. `Adobe Photoshop`)
 - **Editor:** `Adobe-{app_name}` (uppercase, eg. `Adobe-Photoshop`)
 - **Category:** Designing
 - **Machine:** `Unknown Hostname` - You will have to manually specify it!

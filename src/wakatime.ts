@@ -38,7 +38,7 @@ export const sendHeartbeat = async ({
 				time: Math.floor(time / 1000),
 				entity: file,
 				type: 'file',
-				project: `adobe-${APP_NAME_L}`,
+				project: `Adobe ${APP_NAME}`,
 				category: 'designing',
 				language: APP_NAME,
 				plugin: PLUGIN_NAME,
