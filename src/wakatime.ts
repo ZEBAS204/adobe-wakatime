@@ -1,6 +1,6 @@
 const { host, versions } = require('uxp')
 import { platform, arch } from 'os'
-import { getApiKey } from './storage'
+import { getApiKey, getMachineName } from './storage'
 import { CONFIG, STATUS } from './constants'
 
 // Wakatime uses the user agent to identify the application, OS and extension.
@@ -27,6 +27,7 @@ export const sendHeartbeat = async ({
 		return STATUS.NO_API_KEY_PROVIDED
 	}
 
+	const machineName = getMachineName()
 	const response = await fetch(
 		`${CONFIG.WAKATIME_API_ENDPOINT}?api_key=${apiKey}`,
 		{
@@ -46,6 +47,10 @@ export const sendHeartbeat = async ({
 			headers: {
 				'Content-Type': 'application/json',
 				'User-Agent': USER_AGENT,
+				// Machine header must be checked, if not, any value will be stringified
+				...(machineName && {
+					'X-Machine-Name': machineName,
+				}),
 			},
 		}
 	)

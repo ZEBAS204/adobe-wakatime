@@ -106,6 +106,19 @@
 			</div>
 			<sp-body id="waka_error_msg"></sp-body>
 
+			<sp-detail>Plugin Configuration</sp-detail>
+			<sp-divider></sp-divider>
+
+			<sp-textfield placeholder="Default: Unknown" id="waka_api_hostname">
+				<sp-label slot="label">Machine Name (copy from dashboard) </sp-label>
+			</sp-textfield>
+
+			<footer>
+				<sp-action-button id="waka_reset_config">Reset</sp-action-button>
+				<sp-action-button id="waka_save_config">Save</sp-action-button>
+			</footer>
+			<sp-divider></sp-divider>
+
 			<div style="flex: 1 1 auto"></div>
 
 			<sp-body class="small_text" size="xs">

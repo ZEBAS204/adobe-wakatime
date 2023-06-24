@@ -56,7 +56,52 @@ export const isExtensionEnabled = () => {
 	const checkbox = document.getElementById(
 		ELEMENTS.EXTENSION_ENABLED_CHECKBOX
 	) as HTMLInputElement
-	if (checkbox) checkbox.checked = isEnabled
 
+	if (checkbox) checkbox.checked = isEnabled
 	return isEnabled
+}
+
+export const getMachineName = (): string | null => {
+	console.log('[Wakatime] Requesting machine name...')
+
+	const machineValue = localStorage.getItem(CONFIG.STORAGE_MACHINE)
+	const machine = machineValue?.length ? machineValue : null
+
+	// Always sync the input value
+	const input = document.getElementById(
+		ELEMENTS.API_HOSTNAME
+	) as HTMLInputElement
+	if (input && machine) input.value = machine
+
+	console.log('[Wakatime] Machine name:', machine)
+	return machine
+}
+
+const saveMachine = (): void => {
+	const machineInput = document.getElementById(
+		ELEMENTS.API_HOSTNAME
+	) as HTMLInputElement
+
+	const machineName = machineInput?.value?.trim()
+	if (!machineName) return
+	console.log(`[Wakatime] Saving machine name as "${machineName}"`)
+	localStorage.setItem(CONFIG.STORAGE_MACHINE, machineName)
+}
+
+export const manageStorage = (shouldReset: boolean = false): void => {
+	if (shouldReset) {
+		console.log('[Wakatime] Resetting configuration...')
+
+		localStorage.removeItem(CONFIG.STORAGE_MACHINE)
+
+		const machineNameInput = document.getElementById(
+			ELEMENTS.API_HOSTNAME
+		) as HTMLInputElement
+
+		machineNameInput.value = null
+		return
+	}
+
+	console.log('[Wakatime] Saving configuration...')
+	saveMachine()
 }

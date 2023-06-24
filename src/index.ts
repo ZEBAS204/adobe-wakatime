@@ -1,5 +1,11 @@
 import { app } from 'photoshop'
-import { saveSecureKey, saveIsEnabled, isExtensionEnabled } from './storage'
+import {
+	saveSecureKey,
+	saveIsEnabled,
+	isExtensionEnabled,
+	manageStorage,
+	getMachineName,
+} from './storage'
 import { sendHeartbeat } from './wakatime'
 import { updateConnectionStatus } from './utils'
 import { ELEMENTS, CONFIG } from './constants'
@@ -21,6 +27,20 @@ document
 		init()
 	})
 
+document
+	.getElementById(ELEMENTS.CONFIG_SAVE_BTN)
+	?.addEventListener('click', () => {
+		manageStorage()
+		init()
+	})
+
+document
+	.getElementById(ELEMENTS.CONFIG_RESET_BTN)
+	?.addEventListener('click', () => {
+		manageStorage(true)
+		init()
+	})
+
 const init = async () => {
 	clearInterval(intervalRef)
 	if (!isExtensionEnabled()) return
@@ -39,7 +59,9 @@ const init = async () => {
 
 ;(async () => {
 	console.log('[WakaTime] Initializing WakaTime plugin')
-	console.log('[WakaTime] Heartbeat interval:', CONFIG.HEARTBEAT_INTERVAL)
+	console.log(`[WakaTime] Heartbeat interval: ${CONFIG.HEARTBEAT_INTERVAL}ms`)
 
+	// Trigger update machine input value
+	getMachineName()
 	if (isExtensionEnabled()) init()
 })()
