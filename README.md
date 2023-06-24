@@ -43,7 +43,7 @@ While older versions may also work, please note that they are not officially sup
 
 
 
-### CEP Compatible Applications
+### CEP Compatible Applications (WIP - Not currently available)
 
 **Applications supported:**
 
