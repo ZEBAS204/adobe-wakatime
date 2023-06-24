@@ -10,6 +10,7 @@ The Wakatime plugin is a powerful integration that brings [Wakatime](https://wak
 
 By default, the plugin will show in your dashboard like this:
 
+- **File:** The path of the file or the name (if path is unavailable)
 - **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
 - **Project name:** `Adobe {app_name}` (lowercase, eg. `Adobe Photoshop`)
 - **Editor:** `Adobe-{app_name}` (uppercase, eg. `Adobe-Photoshop`)
@@ -29,7 +30,7 @@ While older versions may also work, please note that they are not officially sup
 ## Installation
 
 1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
-2. Locate the plugins folder:
+2. Locate the plugins folder (defalt location):
   - **Windows:** `C:\Program Files\Adobe\Adobe Photoshop 20xx\Plug-ins/`
   - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `Plug-ins` folder.
@@ -40,9 +41,10 @@ While older versions may also work, please note that they are not officially sup
 1. Open Adobe Photoshop after you installed this plugin.
 2. Select **Plugins > Wakatime** in the toolbar or go to the **Plugins panel** and choose **Plugins > Plugins panel > Wakatime**.
 3. Paste your **API key** into the input field and click the **Save** button ([Get your API key here](https://wakatime.com/api-key)).
-4. The `status` should automatically update if the plugin is tracking time (it sends data every 2 minutes)
+4. **(Optional)** Provide your machine name ([found in your dashboard](https://wakatime.com/dashboard)) in the **Machine name** input field. Setting this field helps avoid displaying "Unknown Hostname" on your dashboard.
+5. The `status` should automatically update if the plugin is tracking time (it sends data every 2 minutes)
    - If it still shows "Disconnected," make sure you have an open file for the plugin to work. Don't worry if it initially shows "Disconnected" before you open a file.
-5. To disable the plugin, **uncheck** the "Plugin enabled" checkbox.
+6. To disable the plugin, **uncheck** the "Plugin enabled" checkbox.
 
 ### Status meaning
 
