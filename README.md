@@ -10,7 +10,7 @@ The Wakatime plugin is a powerful integration that brings [Wakatime](https://wak
 
 By default, the plugin will show in your dashboard like this:
 
-- **File:** The path of the file or the name (if path is unavailable)
+- **File:** The path of the file or the name (if the path is unavailable)
 - **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
 - **Project name:** `Adobe {app_name}` (lowercase, eg. `Adobe Photoshop`)
 - **Editor:** `Adobe-{app_name}` (uppercase, eg. `Adobe-Photoshop`)
@@ -29,11 +29,37 @@ While older versions may also work, please note that they are not officially sup
 
 ## Installation
 
+### UXP Compatible Applications
+
+**Applications supported:**
+
+- Photoshop
+
 1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
-2. Locate the plugins folder (defalt location):
+2. Locate the plugins folder (default location):
   - **Windows:** `C:\Program Files\Adobe\Adobe Photoshop 20xx\Plug-ins/`
   - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `Plug-ins` folder.
+
+
+
+### CEP Compatible Applications
+
+**Applications supported:**
+
+- Photoshop (only if `legacy` is available, use UXP instead)
+- Illustrator
+- After Effects
+- etc
+
+> **Warning**
+> You **must Enable loading of unsigned panels**. You can find the [tutorial on how to do it here](https://github.com/Adobe-CEP/Samples/tree/master/PProPanel#2-enable-loading-of-unsigned-panels).
+
+1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
+2. Locate the plugins folder (defalt location):
+  - **Windows:** `C:\Program Files (x86)\Common Files\Adobe\CEP\extensions` or `%appdata%\Adobe\CEP\extensions\` (if the directory isn't there, you must create it manually)
+  - **macOS:** `~/Library/Application Support/Adobe/CEP/extensions/`
+3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `extensions` folder.
 
 
 ## Usage
