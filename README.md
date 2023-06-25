@@ -1,5 +1,7 @@
 # Wakatime Adobe Photoshop Plugin
 
+<img alt="Plugin preview" align="right" width="302" height="452" src=".github/preview.png">
+
 The Wakatime plugin is a powerful integration that brings [Wakatime](https://wakatime.com/)'s time-tracking functionality to Adobe Photoshop.
 
 **Currently supported features:**
@@ -15,7 +17,7 @@ By default, the plugin will show in your dashboard like this:
 - **Project name:** `Adobe {app_name}` (lowercase, eg. `Adobe Photoshop`)
 - **Editor:** `Adobe-{app_name}` (uppercase, eg. `Adobe-Photoshop`)
 - **Category:** Designing
-- **Machine:** `Unknown Hostname` - You will have to manually specify it!
+- **Machine:** `Unknown Hostname` - You will have to manually specify it in UXP!
 
 You can modify the project names, languages, category, etc. using the [Custom rules](https://wakatime.com/settings/rules) in your dashboard.
 
@@ -34,6 +36,7 @@ While older versions may also work, please note that they are not officially sup
 **Applications supported:**
 
 - Photoshop
+- XD has not been tested, it has its [own implementation](https://wakatime.com/adobe-xd).
 
 1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
 2. Locate the plugins folder (default location):
@@ -41,26 +44,23 @@ While older versions may also work, please note that they are not officially sup
   - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `Plug-ins` folder.
 
-
-
 ### CEP Compatible Applications (WIP - Not currently available)
 
 **Applications supported:**
 
-- Photoshop (only if `legacy` is available, use UXP instead)
+- Photoshop (only if `legacy` is available, use [UXP](#uxp-compatible-applications) instead)
 - Illustrator
 - After Effects
-- etc
+- **Please note:** while these applications have been tested with this plugin, there may be other compatible Adobe applications that are not listed here.
 
 > **Warning**
 > You **must Enable loading of unsigned panels**. You can find the [tutorial on how to do it here](https://github.com/Adobe-CEP/Samples/tree/master/PProPanel#2-enable-loading-of-unsigned-panels).
 
 1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
-2. Locate the plugins folder (defalt location):
+2. Locate the plugins folder (default location):
   - **Windows:** `C:\Program Files (x86)\Common Files\Adobe\CEP\extensions` or `%appdata%\Adobe\CEP\extensions\` (if the directory isn't there, you must create it manually)
   - **macOS:** `~/Library/Application Support/Adobe/CEP/extensions/`
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `extensions` folder.
-
 
 ## Usage
 
