@@ -7,24 +7,27 @@ export const updateConnectionStatus = (status: STATUS) => {
 		ELEMENTS.API_CONNECTION_STATUS
 	)
 
-	if (status === STATUS.CONNECTED) {
-		connectionStatus.innerText = 'Connected'
-		connectionStatus.setAttribute('class', 'positive')
-		return
-	}
-	if (status === STATUS.INVALID_API_KEY || status === STATUS.UNAUTHORIZED) {
-		connectionStatus.innerText = 'Unauthorized'
-		connectionStatus.setAttribute('class', 'unauthorized')
-		return
-	}
-	if (status === STATUS.SERVER_ERROR) {
-		connectionStatus.innerText = 'Unavailable'
-		connectionStatus.setAttribute('class', 'negative')
-		return
-	}
+	switch (status) {
+		case STATUS.CONNECTED:
+			connectionStatus.innerText = 'Connected'
+			connectionStatus.setAttribute('class', 'positive')
+			break
 
-	connectionStatus.innerText = 'Disconnected'
-	connectionStatus.setAttribute('class', 'negative')
+		case STATUS.INVALID_API_KEY:
+		case STATUS.UNAUTHORIZED:
+			connectionStatus.innerText = 'Unauthorized'
+			connectionStatus.setAttribute('class', 'unauthorized')
+			break
+
+		case STATUS.SERVER_ERROR:
+			connectionStatus.innerText = 'Unavailable'
+			connectionStatus.setAttribute('class', 'negative')
+			break
+
+		default:
+			connectionStatus.innerText = 'Disconnected'
+			connectionStatus.setAttribute('class', 'negative')
+	}
 }
 
 let CLI_DIR_CACHE: string = null
