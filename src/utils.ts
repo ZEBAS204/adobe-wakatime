@@ -8,18 +8,18 @@ export const updateConnectionStatus = (status: STATUS) => {
 	switch (status) {
 		case STATUS.CONNECTED:
 			connectionStatus.innerText = 'Connected'
-			connectionStatus.setAttribute('class', 'positive')
+			connectionStatus.setAttribute('variant', 'positive')
 			break
 
 		case STATUS.INVALID_API_KEY:
 		case STATUS.UNAUTHORIZED:
 			connectionStatus.innerText = 'Unauthorized'
-			connectionStatus.setAttribute('class', 'unauthorized')
+			connectionStatus.setAttribute('variant', 'notice')
 			break
 
 		case STATUS.SERVER_ERROR:
 			connectionStatus.innerText = 'Unavailable'
-			connectionStatus.setAttribute('class', 'negative')
+			connectionStatus.setAttribute('variant', 'negative')
 			break
 
 		default:
