@@ -8,6 +8,9 @@
     "minVersion": "23.0.0"
   },
   "manifestVersion": 5,
+  "featureFlags": {
+    "enableSWCSupport": true
+  },
   "requiredPermissions": {
     "network": {
       "domains": [
