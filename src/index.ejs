@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% if(htmlWebpackPlugin.options.include_libs) {%>
+		<script defer src="lib/CSInterface.js"></script>
+		<% } %>
+		<%= htmlWebpackPlugin.tags.headTags %>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="row">
+				<sp-detail>Status</sp-detail>
+				<sp-body size="xs" id="connectionStatus" class="negative">
+					Disconnected
+				</sp-body>
+			</div>
+
+			<sp-divider></sp-divider>
+
+			<div class="row">
+				<sp-textfield placeholder="API key" id="waka_key" type="password">
+					<sp-label slot="label">Your API key</sp-label>
+				</sp-textfield>
+				<button
+					id="waka_submitkey"
+					class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM"
+				>
+					<span class="spectrum-Button-label">Save</span>
+				</button>
+			</div>
+			<sp-body id="waka_error_msg"></sp-body>
+
+			<sp-detail>Plugin Configuration</sp-detail>
+			<sp-divider></sp-divider>
+
+			<sp-checkbox id="waka_enabled" checked="true">Plugin enabled</sp-checkbox>
+
+			<sp-textfield placeholder="Default: Unknown" id="waka_api_hostname">
+				<sp-label slot="label">Machine Name (copy from dashboard) </sp-label>
+			</sp-textfield>
+
+			<footer>
+				<sp-action-button id="waka_reset_config">Reset</sp-action-button>
+				<sp-action-button id="waka_save_config">Save</sp-action-button>
+			</footer>
+			<sp-divider></sp-divider>
+
+			<div style="flex: 1 1 auto"></div>
+
+			<sp-body class="small_text" size="xs">
+				<span>You can find your API key at</span>
+				<sp-link href="https://wakatime.com/api-key" quiet>
+					https://wakatime.com/api-key
+				</sp-link>
+			</sp-body>
+		</div>
+		<%= htmlWebpackPlugin.tags.bodyTags %>
+	</body>
+</html>
