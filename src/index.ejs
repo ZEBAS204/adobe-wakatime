@@ -24,43 +24,53 @@
 		<% } %>
 	</head>
 	<body>
-		<div class="wrapper">
-			<div class="row">
-				<sp-detail>Status</sp-detail>
-				<sp-body size="xs" id="connectionStatus" class="negative">
+		<sp-theme class="wrapper" theme="spectrum" color="dark" scale="medium">
+			<div class="row" style="align-items: baseline">
+				<h5>Status</h5>
+				<sp-status-light id="connectionStatus" size="m" variant="negative">
 					Disconnected
-				</sp-body>
+				</sp-status-light>
 			</div>
 
-			<sp-divider></sp-divider>
+			<sp-divider size="s"></sp-divider>
 
 			<div class="row">
-				<sp-textfield placeholder="API key" id="waka_key" type="password">
-					<sp-label slot="label">Your API key</sp-label>
-				</sp-textfield>
-				<button
-					id="waka_submitkey"
-					class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM"
-				>
-					<span class="spectrum-Button-label">Save</span>
-				</button>
+				<div>
+					<sp-field-label for="waka_key">Your API key</sp-field-label>
+					<sp-textfield
+						id="waka_key"
+						type="password"
+						placeholder="API key (waka_...)"
+					></sp-textfield>
+				</div>
+				<sp-button id="waka_submitkey" size="m" variant="accent">
+					Save
+				</sp-button>
 			</div>
-			<sp-body id="waka_error_msg"></sp-body>
+			<div id="waka_error_msg"></div>
 
-			<sp-detail>Plugin Configuration</sp-detail>
-			<sp-divider></sp-divider>
+			<h5>Plugin Configuration</h5>
+			<sp-divider size="s"></sp-divider>
 
-			<sp-checkbox id="waka_enabled" checked="true">Plugin enabled</sp-checkbox>
+			<sp-checkbox id="waka_enabled" size="m" checked>
+				Plugin enabled
+			</sp-checkbox>
 
-			<sp-textfield placeholder="Default: Unknown" id="waka_api_hostname">
-				<sp-label slot="label">Machine Name (copy from dashboard) </sp-label>
-			</sp-textfield>
+			<div>
+				<sp-field-label for="waka_api_hostname">
+					Machine Name (copy from dashboard)
+				</sp-field-label>
+				<sp-textfield
+					id="waka_api_hostname"
+					placeholder="Default: Unknown"
+				></sp-textfield>
+			</div>
 
 			<footer>
 				<sp-action-button id="waka_reset_config">Reset</sp-action-button>
 				<sp-action-button id="waka_save_config">Save</sp-action-button>
 			</footer>
-			<sp-divider></sp-divider>
+			<sp-divider size="s"></sp-divider>
 
 			<div style="flex: 1 1 auto"></div>
 
@@ -70,7 +80,7 @@
 					https://wakatime.com/api-key
 				</sp-link>
 			</sp-body>
-		</div>
+		</sp-theme>
 		<%= htmlWebpackPlugin.tags.bodyTags %>
 	</body>
 </html>
