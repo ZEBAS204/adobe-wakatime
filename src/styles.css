@@ -39,7 +39,7 @@ footer {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-end;
-	align-items: baseline;
+	justify-content: space-between;
 }
 .row > * {
 	margin: 0 8px;
