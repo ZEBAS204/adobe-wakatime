@@ -65,26 +65,3 @@ footer {
 	color: red;
 	font-weight: bold;
 }
-/*
-#connectionStatus {
-	position: relative;
-}
-#connectionStatus:before {
-	content: '';
-	position: absolute;
-	left: -1.5em;
-	top: 0.5em;
-	width: 1em;
-	height: 1em;
-	border-radius: 0.5em;
-	border: 1px solid rgba(255, 255, 255, 0.25);
-}
-#connectionStatus.negative:before {
-	background-color: red;
-}
-#connectionStatus.positive:before {
-	background-color: green;
-}
-#connectionStatus.unauthorized:before {
-	background-color: #ca6608;
-}*/
