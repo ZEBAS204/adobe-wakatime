@@ -56,6 +56,7 @@
 				Plugin enabled
 			</sp-checkbox>
 
+			<% if(htmlWebpackPlugin.options.isUXP) {%>
 			<div>
 				<sp-field-label for="waka_api_hostname">
 					Machine Name (copy from dashboard)
@@ -71,6 +72,7 @@
 				<sp-action-button id="waka_save_config">Save</sp-action-button>
 			</footer>
 			<sp-divider size="s"></sp-divider>
+			<% } %>
 
 			<div style="flex: 1 1 auto"></div>
 
