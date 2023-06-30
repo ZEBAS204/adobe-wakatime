@@ -67,6 +67,15 @@ HostInformation.init_CEP()
 WakaTimePlugin.initialize()
 WakaTimePlugin.initListeners()
 
+//* All links must be handled or else the extension will be used like a browser
+document.querySelectorAll('sp-link')?.forEach((el) => {
+	el.addEventListener('click', (event) => {
+		event.preventDefault()
+		const target = event.target as HTMLAnchorElement
+		target?.href && csInterface.openURLInDefaultBrowser(target.href)
+	})
+})
+
 // Init theme events
 updateTheme()
 csInterface.addEventListener(
