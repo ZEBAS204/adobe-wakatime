@@ -23,6 +23,34 @@ const asyncEvalScript = (script: string): Promise<string> => {
 	})
 }
 
+const updateTheme = () => {
+	const themeInfo = csInterface.getHostEnvironment().appSkinInfo
+	const element = document.querySelector('sp-theme')
+
+	if (!element || !themeInfo) return
+	console.log('[WakaTime] Updating theme', themeInfo)
+
+	let theme = null
+	switch (JSON.stringify(themeInfo.panelBackgroundColor.color)) {
+		case '{"alpha":255,"green":240,"blue":240,"red":240}':
+			theme = 'light'
+			break
+		case '{"alpha":255,"green":184,"blue":184,"red":184}':
+			theme = 'lightest'
+			break
+		case '{"alpha":255,"green":83,"blue":83,"red":83}':
+			theme = 'dark'
+			break
+		case '{"alpha":255,"green":50,"blue":50,"red":50}':
+			theme = 'darkest'
+			break
+	}
+	if (theme) {
+		console.log('[WakaTime] Updating "sp-theme" to', theme)
+		element.setAttribute('color', theme)
+	}
+}
+
 WakaTimePlugin.getActiveFile = async () => {
 	const currentDocument = await asyncEvalScript('app.activeDocument.fullName')
 	// ERROR 1302 === no active document
@@ -38,3 +66,11 @@ WakaTimePlugin.getActiveFile = async () => {
 HostInformation.init_CEP()
 WakaTimePlugin.initialize()
 WakaTimePlugin.initListeners()
+
+// Init theme events
+updateTheme()
+csInterface.addEventListener(
+	CSInterface.THEME_COLOR_CHANGED_EVENT,
+	updateTheme,
+	null
+)
