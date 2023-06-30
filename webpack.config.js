@@ -11,7 +11,7 @@ module.exports = {
 	entry: `./src/index_${IS_UXP ? 'uxp' : 'cep'}.ts`,
 	mode: IS_DEV ? 'development' : 'production',
 	target: 'node',
-	devtool: IS_DEV ? 'eval-cheap-source-map' : false,
+	devtool: false,
 	module: {
 		rules: [
 			{
