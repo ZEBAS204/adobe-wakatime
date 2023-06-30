@@ -23,25 +23,6 @@ const asyncEvalScript = (script: string): Promise<string> => {
 	})
 }
 
-const registerEvents = ({ data: isOpen }: { data: boolean }) => {
-	console.log('[WakaTime] Adding events')
-	if (!isOpen) return
-
-	WakaTimePlugin.initListeners()
-
-	// Remove the event
-	csInterface.removeEventListener(
-		'com.adobe.csxs.events.WindowVisibilityChanged',
-		registerEvents,
-		null
-	)
-}
-csInterface.addEventListener(
-	'com.adobe.csxs.events.WindowVisibilityChanged',
-	registerEvents,
-	null
-)
-
 WakaTimePlugin.getActiveFile = async () => {
 	const currentDocument = await asyncEvalScript('app.activeDocument.fullName')
 	// ERROR 1302 === no active document
@@ -56,3 +37,4 @@ WakaTimePlugin.getActiveFile = async () => {
 
 HostInformation.init_CEP()
 WakaTimePlugin.initialize()
+WakaTimePlugin.initListeners()
