@@ -65,9 +65,9 @@ export class HostInformation {
 				IDSN: 'InDesign',
 				AICY: 'InCopy',
 				ILST: 'Illustrator',
-				Pro: 'Premiere',
+				PPRO: 'Premiere',
 				PRLD: 'Prelude',
-				Effects: 'After',
+				AEFT: 'After',
 				FLPR: 'Animate',
 				AUDT: 'Audition',
 				DRWV: 'Dreamweaver',
@@ -75,7 +75,10 @@ export class HostInformation {
 				RUSH: 'Rush',
 			}
 			const appId = HOST_INFO.appId as keyof typeof ids
-			return ids[appId]
+			const name = ids[appId] || 'UNKNOWN'
+
+			console.log('[WakaTime] App name:', name, appId)
+			return name
 		})()
 
 		const PLUGIN_NAME = `adobe-${APP_NAME.toLowerCase()}-wakatime/1.0.0`
