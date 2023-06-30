@@ -13,9 +13,6 @@ export class WakaTimePlugin {
 		console.log('[WakaTime] Initializing WakaTime plugin')
 		console.log(`[WakaTime] Heartbeat interval: ${CONFIG.HEARTBEAT_INTERVAL}ms`)
 
-		// Trigger update machine input value
-		Storage.getMachineName()
-
 		if (Storage.isExtensionEnabled()) this.init()
 	}
 
