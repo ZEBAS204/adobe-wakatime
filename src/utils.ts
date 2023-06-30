@@ -25,7 +25,7 @@ export const updateConnectionStatus = (status: STATUS) => {
 
 		default:
 			connectionStatus.innerText = 'Disconnected'
-			connectionStatus.setAttribute('class', 'negative')
+			connectionStatus.setAttribute('variant', 'negative')
 	}
 }
 
