@@ -20,7 +20,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	color: var(--spectrum-gray-800);
-	background-color: var(--spectrum-gray-100);
+	background-color: var(--spectrum-gray-200);
 }
 .wrapper > * {
 	flex: 0 0 auto;
