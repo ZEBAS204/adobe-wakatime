@@ -7,6 +7,10 @@
 		<%= htmlWebpackPlugin.tags.headTags %>
 		<% if(htmlWebpackPlugin.options.isUXP) {%>
 		<style>
+			.wrapper {
+				background-color: var(--uxp-host-background-color) !important;
+				color: var(--uxp-host-text-color) !important;
+			}
 			#connectionStatus {
 				display: flex;
 				align-items: center;

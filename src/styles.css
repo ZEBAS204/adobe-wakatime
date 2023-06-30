@@ -19,10 +19,6 @@ footer {
 	padding: 16px;
 	display: flex;
 	flex-direction: column;
-
-	background-color: var(--uxp-host-background-color);
-	color: var(--uxp-host-text-color);
-
 	color: var(--spectrum-gray-800);
 	background-color: var(--spectrum-gray-100);
 }
