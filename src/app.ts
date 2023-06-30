@@ -48,7 +48,7 @@ export class WakaTimePlugin {
 
 		document
 			.getElementById(ELEMENTS.EXTENSION_ENABLED_CHECKBOX)
-			?.addEventListener('click', this.handleExtensionEnabledClick)
+			?.addEventListener('change', this.handleExtensionEnabledClick)
 
 		document
 			.getElementById(ELEMENTS.CONFIG_SAVE_BTN)
