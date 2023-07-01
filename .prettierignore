@@ -1,0 +1,6 @@
+package-lock.json
+package.json
+**/.git
+**/node_modules
+**/dist
+**/release
