@@ -30,25 +30,28 @@ const updateTheme = () => {
 	if (!element || !themeInfo) return
 	console.log('[WakaTime] Updating theme', themeInfo)
 
+	const getRgbLightness = ({ red, green, blue }: { [key: string]: number }) => {
+		if (!green || !red || !blue) return
+
+		const max = Math.max(red, green, blue)
+		const min = Math.min(red, green, blue)
+		const lightness = Math.round((max + min) / 2)
+		return lightness // should be a percentage, but is easier this way
+	}
+
+	// The lightness goes from 0 to 255, we just divide it into four (255/4 = 63.75)
+	const LIGHT = 255 / 4
+	const value = getRgbLightness(themeInfo.panelBackgroundColor.color)
+	if (value === null) return
+
 	let theme = null
-	switch (JSON.stringify(themeInfo.panelBackgroundColor.color)) {
-		case '{"alpha":255,"green":240,"blue":240,"red":240}':
-			theme = 'light'
-			break
-		case '{"alpha":255,"green":184,"blue":184,"red":184}':
-			theme = 'lightest'
-			break
-		case '{"alpha":255,"green":83,"blue":83,"red":83}':
-			theme = 'dark'
-			break
-		case '{"alpha":255,"green":50,"blue":50,"red":50}':
-			theme = 'darkest'
-			break
-	}
-	if (theme) {
-		console.log('[WakaTime] Updating "sp-theme" to', theme)
-		element.setAttribute('color', theme)
-	}
+	if (value <= LIGHT) theme = 'darkest'
+	else if (value <= LIGHT * 2) theme = 'dark'
+	else if (value <= LIGHT * 3) theme = 'lightest'
+	else if (value <= LIGHT * 4) theme = 'light'
+
+	console.log('[WakaTime] Updating "sp-theme" to', theme)
+	element.setAttribute('color', theme)
 }
 
 WakaTimePlugin.getActiveFile = async () => {
@@ -64,6 +67,7 @@ WakaTimePlugin.getActiveFile = async () => {
 }
 
 HostInformation.init_CEP()
+console.log('[WakaTime] Host name:', HostInformation.HOST_NAME)
 WakaTimePlugin.initialize()
 WakaTimePlugin.initListeners()
 
