@@ -51,12 +51,16 @@
                     <Geometry>
                         <Size>
                             <Height>400</Height>
-                            <Width>300</Width>
+                            <Width>350</Width>
                         </Size>
                         <MinSize>
                             <Height>250</Height>
                             <Width>250</Width>
                         </MinSize>
+                        <MaxSize>
+                            <Height>2000</Height>
+                            <Width>2000</Width>
+                        </MaxSize>
                     </Geometry>
                     <Icons>
                         <Icon Type="Normal">./icons/plugin-icon.png</Icon>

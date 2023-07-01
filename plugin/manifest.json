@@ -32,7 +32,7 @@
         "default": "Wakatime"
       },
       "minimumSize": {
-        "width": 250,
+        "width": 310,
         "height": 220
       },
       "maximumSize": {
@@ -40,7 +40,7 @@
         "height": 2000
       },
       "preferredDockedSize": {
-        "width": 300,
+        "width": 330,
         "height": 400
       },
       "preferredFloatingSize": {
