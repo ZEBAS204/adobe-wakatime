@@ -8,8 +8,10 @@
     "dev:cep": "cross-env TYPE=cep webpack",
     "watch:uxp": "npm run dev:uxp watch",
     "watch:cep": "npm run dev:cep watch",
+    "build": "npm run build:uxp && npm run build:cep && echo Done",
     "build:uxp": "cross-env TYPE=uxp NODE_ENV=production webpack",
-    "build:cep": "cross-env TYPE=cep NODE_ENV=production webpack"
+    "build:cep": "cross-env TYPE=cep NODE_ENV=production webpack",
+    "prettier": "prettier . --write --ignore-unknown"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
