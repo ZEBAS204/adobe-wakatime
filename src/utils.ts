@@ -2,9 +2,7 @@ import { ELEMENTS, STATUS } from './constants'
 import Storage from './storage'
 
 export const updateConnectionStatus = (status: STATUS) => {
-	const connectionStatus = document.getElementById(
-		ELEMENTS.API_CONNECTION_STATUS
-	)
+	const connectionStatus = document.getElementById(ELEMENTS.API_CONNECTION_STATUS)
 
 	switch (status) {
 		case STATUS.CONNECTED:

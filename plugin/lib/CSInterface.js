@@ -486,8 +486,7 @@ function CSInterface() {}
  *    // and redraw all UI controls of your extension according to the style info.
  * }
  */
-CSInterface.THEME_COLOR_CHANGED_EVENT =
-	'com.adobe.csxs.events.ThemeColorChanged'
+CSInterface.THEME_COLOR_CHANGED_EVENT = 'com.adobe.csxs.events.ThemeColorChanged'
 
 /** The host environment data object. */
 CSInterface.prototype.hostEnvironment = window.__adobe_cep__
@@ -808,17 +807,11 @@ CSInterface.prototype.getOSInformation = function () {
 		}
 
 		return winVersion + winBit
-	} else if (
-		navigator.platform == 'MacIntel' ||
-		navigator.platform == 'Macintosh'
-	) {
+	} else if (navigator.platform == 'MacIntel' || navigator.platform == 'Macintosh') {
 		var result = 'Mac OS X'
 
 		if (userAgent.indexOf('Mac OS X') > -1) {
-			result = userAgent.substring(
-				userAgent.indexOf('Mac OS X'),
-				userAgent.indexOf(')')
-			)
+			result = userAgent.substring(userAgent.indexOf('Mac OS X'), userAgent.indexOf(')'))
 			result = result.replace(/_/g, '.')
 		}
 
@@ -970,18 +963,11 @@ CSInterface.prototype.setPanelFlyoutMenu = function (menu) {
  *
  * @see HostCapabilities.EXTENDED_PANEL_MENU
  */
-CSInterface.prototype.updatePanelMenuItem = function (
-	menuItemLabel,
-	enabled,
-	checked
-) {
+CSInterface.prototype.updatePanelMenuItem = function (menuItemLabel, enabled, checked) {
 	var ret = false
 	if (this.getHostCapabilities().EXTENDED_PANEL_MENU) {
 		var itemStatus = new MenuItemStatus(menuItemLabel, enabled, checked)
-		ret = window.__adobe_cep__.invokeSync(
-			'updatePanelMenuItem',
-			JSON.stringify(itemStatus)
-		)
+		ret = window.__adobe_cep__.invokeSync('updatePanelMenuItem', JSON.stringify(itemStatus))
 	}
 	return ret
 }
@@ -1110,16 +1096,9 @@ CSInterface.prototype.setContextMenuByJSON = function (menu, callback) {
  * @param enabled       True to enable the item, false to disable it (gray it out).
  * @param checked       True to select the item, false to deselect it.
  */
-CSInterface.prototype.updateContextMenuItem = function (
-	menuItemID,
-	enabled,
-	checked
-) {
+CSInterface.prototype.updateContextMenuItem = function (menuItemID, enabled, checked) {
 	var itemStatus = new ContextMenuItemStatus(menuItemID, enabled, checked)
-	ret = window.__adobe_cep__.invokeSync(
-		'updateContextMenuItem',
-		JSON.stringify(itemStatus)
-	)
+	ret = window.__adobe_cep__.invokeSync('updateContextMenuItem', JSON.stringify(itemStatus))
 }
 
 /**

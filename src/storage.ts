@@ -4,9 +4,7 @@ export default class Storage {
 	private static API_CACHE: string | null
 
 	public static async saveSecureKey(): Promise<void> {
-		const userInput = document.getElementById(
-			ELEMENTS.API_KEY_INPUT
-		) as HTMLInputElement
+		const userInput = document.getElementById(ELEMENTS.API_KEY_INPUT) as HTMLInputElement
 		const errorMessage = document.getElementById(ELEMENTS.INPUT_ERROR_MESSAGE)
 
 		//* MAC bug fix: can't read input as password.
@@ -67,9 +65,7 @@ export default class Storage {
 		const machine = machineValue?.length ? machineValue : null
 
 		// Always sync the input value
-		const input = document.getElementById(
-			ELEMENTS.API_HOSTNAME
-		) as HTMLInputElement
+		const input = document.getElementById(ELEMENTS.API_HOSTNAME) as HTMLInputElement
 
 		if (input && machine) input.value = machine
 
@@ -78,9 +74,7 @@ export default class Storage {
 	}
 
 	private static saveMachine(): void {
-		const machineInput = document.getElementById(
-			ELEMENTS.API_HOSTNAME
-		) as HTMLInputElement
+		const machineInput = document.getElementById(ELEMENTS.API_HOSTNAME) as HTMLInputElement
 		const machineName = machineInput?.value?.trim()
 
 		if (!machineName) return
@@ -95,9 +89,7 @@ export default class Storage {
 
 			localStorage.removeItem(CONFIG.STORAGE_MACHINE)
 
-			const machineNameInput = document.getElementById(
-				ELEMENTS.API_HOSTNAME
-			) as HTMLInputElement
+			const machineNameInput = document.getElementById(ELEMENTS.API_HOSTNAME) as HTMLInputElement
 
 			machineNameInput.value = null
 			return

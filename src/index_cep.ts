@@ -82,8 +82,4 @@ document.querySelectorAll('sp-link')?.forEach((el) => {
 
 // Init theme events
 updateTheme()
-csInterface.addEventListener(
-	CSInterface.THEME_COLOR_CHANGED_EVENT,
-	updateTheme,
-	null
-)
+csInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, updateTheme, null)
