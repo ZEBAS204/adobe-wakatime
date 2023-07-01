@@ -37,13 +37,14 @@
                     </CEFCommandLine>
                 </Resources>
                 <Lifecycle>
-                    <AutoVisible>false</AutoVisible>
+                    <AutoVisible>true</AutoVisible>
+                    <!-- If AutoVisible is false, uncomment this (not supported by some hosts) -->
+                    <!--
                     <StartOn>
-                        <!-- PS dispatches this event on startup -->
                     	<Event>applicationActivate</Event>
-						<!-- PPro dispatches this event on startup -->
 						<Event>com.adobe.csxs.events.ApplicationActivate</Event>
                     </StartOn>
+                    -->
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
