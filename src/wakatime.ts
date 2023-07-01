@@ -1,33 +1,21 @@
-const { host, versions } = require('uxp')
-import { platform, arch } from 'os'
-import { getApiKey, getMachineName } from './storage'
 import { CONFIG, STATUS } from './constants'
+import { HostInformation } from './utils'
+import Storage from './storage'
 
-// Wakatime uses the user agent to identify the application, OS and extension.
-const APP_NAME = host.name as string
-const APP_NAME_L = APP_NAME.toLocaleLowerCase()
-const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/${versions.plugin}`
-// We need to remove any numbers from the platform as win32/win10 is not recognized and will be
-// labeled as Unknown OS. Wakatime accepts {os_name}_{os_version} format.
-const AGENT_OS = `${platform().replace(/\d/g, '')}_${arch()}`
-const USER_AGENT = `${APP_NAME}/${host.version} ${AGENT_OS} ${PLUGIN_NAME}`
-
-export const sendHeartbeat = async ({
-	file,
-	time,
-}: {
-	file?: string
-	time?: number
-}): Promise<STATUS> => {
+interface HeartbeatData {
+	file: string
+	time: number
+}
+export const sendHeartbeat = async (data: HeartbeatData): Promise<STATUS> => {
+	const { file, time } = data
 	console.log('[WakaTime] Sending heartbeat:', file)
 
-	const apiKey = await getApiKey()
+	const apiKey = await Storage.getApiKey()
 	if (!apiKey) {
 		console.error('[WakaTime] No API key provided for sendHearteat()')
 		return STATUS.NO_API_KEY_PROVIDED
 	}
 
-	const machineName = getMachineName()
 	const response = await fetch(
 		`${CONFIG.WAKATIME_API_ENDPOINT}?api_key=${apiKey}`,
 		{
@@ -39,17 +27,17 @@ export const sendHeartbeat = async ({
 				time: Math.floor(time / 1000),
 				entity: file,
 				type: 'file',
-				project: `Adobe ${APP_NAME}`,
+				project: `Adobe ${HostInformation.APP_NAME}`,
 				category: 'designing',
-				language: APP_NAME,
-				plugin: PLUGIN_NAME,
+				language: HostInformation.APP_NAME,
+				plugin: HostInformation.PLUGIN_NAME,
 			}),
 			headers: {
 				'Content-Type': 'application/json',
-				'User-Agent': USER_AGENT,
+				'User-Agent': HostInformation.USER_AGENT,
 				// Machine header must be checked, if not, any value will be stringified
-				...(machineName && {
-					'X-Machine-Name': machineName,
+				...(HostInformation.HOST_NAME && {
+					'X-Machine-Name': HostInformation.HOST_NAME,
 				}),
 			},
 		}

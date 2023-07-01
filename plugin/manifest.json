@@ -8,6 +8,9 @@
     "minVersion": "23.0.0"
   },
   "manifestVersion": 5,
+  "featureFlags": {
+    "enableSWCSupport": true
+  },
   "requiredPermissions": {
     "network": {
       "domains": [
@@ -29,7 +32,7 @@
         "default": "Wakatime"
       },
       "minimumSize": {
-        "width": 250,
+        "width": 310,
         "height": 220
       },
       "maximumSize": {
@@ -37,7 +40,7 @@
         "height": 2000
       },
       "preferredDockedSize": {
-        "width": 300,
+        "width": 330,
         "height": 400
       },
       "preferredFloatingSize": {

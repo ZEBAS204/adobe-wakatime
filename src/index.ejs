@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% if(htmlWebpackPlugin.options.isCEP) {%>
+		<script defer src="lib/CSInterface.js"></script>
+		<% } %>
+		<%= htmlWebpackPlugin.tags.headTags %>
+		<% if(htmlWebpackPlugin.options.isUXP) {%>
+		<style>
+			.wrapper {
+				background-color: var(--uxp-host-background-color) !important;
+				color: var(--uxp-host-text-color) !important;
+			}
+			#connectionStatus {
+				display: flex;
+				align-items: center;
+			}
+			#connectionStatus:before {
+				content: '';
+				display: inline-block;
+				margin-right: 0.5em;
+				height: 8px;
+				width: 8px;
+			}
+		</style>
+		<% } %>
+	</head>
+	<body>
+		<sp-theme class="wrapper" theme="spectrum" color="dark" scale="medium">
+			<div class="row" style="align-items: baseline">
+				<h5>Status</h5>
+				<sp-status-light id="connectionStatus" size="m" variant="negative">
+					Disconnected
+				</sp-status-light>
+			</div>
+
+			<sp-divider size="s"></sp-divider>
+
+			<div class="row">
+				<div>
+					<sp-field-label for="waka_key">Your API key</sp-field-label>
+					<sp-textfield
+						id="waka_key"
+						type="password"
+						placeholder="API key (waka_...)"
+					></sp-textfield>
+				</div>
+				<sp-button id="waka_submitkey" size="m" variant="accent">
+					Save
+				</sp-button>
+			</div>
+			<div id="waka_error_msg"></div>
+
+			<h5>Plugin Configuration</h5>
+			<sp-divider size="s"></sp-divider>
+
+			<sp-checkbox id="waka_enabled" size="m" checked>
+				Plugin enabled
+			</sp-checkbox>
+
+			<% if(htmlWebpackPlugin.options.isUXP) {%>
+			<div>
+				<sp-field-label for="waka_api_hostname">
+					Machine Name (copy from dashboard)
+				</sp-field-label>
+				<sp-textfield
+					id="waka_api_hostname"
+					placeholder="Default: Unknown"
+				></sp-textfield>
+			</div>
+
+			<footer>
+				<sp-action-button id="waka_reset_config">Reset</sp-action-button>
+				<sp-action-button id="waka_save_config">Save</sp-action-button>
+			</footer>
+			<sp-divider size="s"></sp-divider>
+			<% } %>
+
+			<div style="flex: 1 1 auto"></div>
+
+			<sp-body class="small_text" size="xs">
+				<span>You can find your API key at</span>
+				<sp-link href="https://wakatime.com/api-key" quiet>
+					https://wakatime.com/api-key
+				</sp-link>
+			</sp-body>
+		</sp-theme>
+		<%= htmlWebpackPlugin.tags.bodyTags %>
+	</body>
+</html>

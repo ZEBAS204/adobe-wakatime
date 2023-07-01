@@ -1,107 +1,109 @@
-const { secureStorage } = require('uxp').storage
 import { CONFIG, ELEMENTS } from './constants'
 
-let API_CACHE: string | null
+export default class Storage {
+	private static API_CACHE: string | null
 
-export const saveSecureKey = async (): Promise<void> => {
-	const userInput = document.getElementById(
-		ELEMENTS.API_KEY_INPUT
-	) as HTMLInputElement
-	const errorMessage = document.getElementById(ELEMENTS.INPUT_ERROR_MESSAGE)
+	public static async saveSecureKey(): Promise<void> {
+		const userInput = document.getElementById(
+			ELEMENTS.API_KEY_INPUT
+		) as HTMLInputElement
+		const errorMessage = document.getElementById(ELEMENTS.INPUT_ERROR_MESSAGE)
 
-	//* MAC bug fix: can't read input as password.
-	userInput.type = 'text'
-	const key = userInput.value
-	userInput.type = 'password'
+		//* MAC bug fix: can't read input as password.
+		userInput.type = 'text'
+		const key = userInput.value
+		userInput.type = 'password'
 
-	// API keys start with waka_
-	if (!key.length || !key.startsWith('waka_')) {
-		errorMessage.textContent = 'Invalid API key'
-		return
+		// API keys start with waka_
+		if (!key.length || !key.startsWith('waka_')) {
+			errorMessage.textContent = 'Invalid API key'
+			return
+		}
+		errorMessage.textContent = ''
+
+		Storage.API_CACHE = key
+		localStorage.setItem(CONFIG.STORAGE_API_KEY, key.trim())
 	}
-	errorMessage.textContent = ''
 
-	API_CACHE = key
-	await secureStorage.setItem(CONFIG.STORAGE_API_KEY, key.trim())
-}
+	public static async getApiKey(): Promise<string> {
+		if (Storage.API_CACHE) return Storage.API_CACHE
 
-export const getApiKey = async () => {
-	if (API_CACHE) return API_CACHE
+		// We get the stored value from the secureStorage in the form of a uint8Array.
+		const secureKey = localStorage.getItem(CONFIG.STORAGE_API_KEY)
+		// We convert the uint8Array to a string to present it to the user.
 
-	// We get the stored value from the secureStorage in the form of a uint8Array.
-	const uintArray = await secureStorage.getItem(CONFIG.STORAGE_API_KEY)
-	// We convert the uint8Array to a string to present it to the user.
-	let secureKey = ''
-	for (let i of uintArray) secureKey += String.fromCharCode(i)
-	API_CACHE = secureKey
-	return secureKey
-}
+		Storage.API_CACHE = secureKey
+		return secureKey
+	}
 
-export const saveIsEnabled = () => {
-	const checkbox = document.getElementById(
-		ELEMENTS.EXTENSION_ENABLED_CHECKBOX
-	) as HTMLInputElement
+	public static saveIsEnabled(): void {
+		const checkbox = document.getElementById(
+			ELEMENTS.EXTENSION_ENABLED_CHECKBOX
+		) as HTMLInputElement
+		const isEnabled = checkbox.checked
 
-	const isEnabled = checkbox.checked
-	localStorage.setItem(CONFIG.STORAGE_PLUGIN_ENABLED, isEnabled.toString())
+		console.log(`[WakaTime] Extension ${isEnabled ? 'enabled' : 'disabled'}`)
+		localStorage.setItem(CONFIG.STORAGE_PLUGIN_ENABLED, isEnabled.toString())
+	}
 
-	console.log(`[WakaTime] Extension ${isEnabled ? 'enabled' : 'disabled'}`)
-}
+	public static isExtensionEnabled(): boolean {
+		const keyValue = localStorage.getItem(CONFIG.STORAGE_PLUGIN_ENABLED)
+		const isEnabled = keyValue === null ? true : JSON.parse(keyValue)
 
-export const isExtensionEnabled = () => {
-	const keyValue = localStorage.getItem(CONFIG.STORAGE_PLUGIN_ENABLED)
-	const isEnabled = keyValue === null ? true : JSON.parse(keyValue)
+		// Always sync the checkbox value
+		const checkbox = document.getElementById(
+			ELEMENTS.EXTENSION_ENABLED_CHECKBOX
+		) as HTMLInputElement
 
-	// Always sync the checkbox value
-	const checkbox = document.getElementById(
-		ELEMENTS.EXTENSION_ENABLED_CHECKBOX
-	) as HTMLInputElement
+		if (checkbox) checkbox.checked = isEnabled
 
-	if (checkbox) checkbox.checked = isEnabled
-	return isEnabled
-}
+		return isEnabled
+	}
 
-export const getMachineName = (): string | null => {
-	console.log('[Wakatime] Requesting machine name...')
+	public static getMachineName(): string | null {
+		console.log('[Wakatime] Requesting machine name...')
 
-	const machineValue = localStorage.getItem(CONFIG.STORAGE_MACHINE)
-	const machine = machineValue?.length ? machineValue : null
+		const machineValue = localStorage.getItem(CONFIG.STORAGE_MACHINE)
+		const machine = machineValue?.length ? machineValue : null
 
-	// Always sync the input value
-	const input = document.getElementById(
-		ELEMENTS.API_HOSTNAME
-	) as HTMLInputElement
-	if (input && machine) input.value = machine
-
-	console.log('[Wakatime] Machine name:', machine)
-	return machine
-}
-
-const saveMachine = (): void => {
-	const machineInput = document.getElementById(
-		ELEMENTS.API_HOSTNAME
-	) as HTMLInputElement
-
-	const machineName = machineInput?.value?.trim()
-	if (!machineName) return
-	console.log(`[Wakatime] Saving machine name as "${machineName}"`)
-	localStorage.setItem(CONFIG.STORAGE_MACHINE, machineName)
-}
-
-export const manageStorage = (shouldReset: boolean = false): void => {
-	if (shouldReset) {
-		console.log('[Wakatime] Resetting configuration...')
-
-		localStorage.removeItem(CONFIG.STORAGE_MACHINE)
-
-		const machineNameInput = document.getElementById(
+		// Always sync the input value
+		const input = document.getElementById(
 			ELEMENTS.API_HOSTNAME
 		) as HTMLInputElement
 
-		machineNameInput.value = null
-		return
+		if (input && machine) input.value = machine
+
+		console.log('[Wakatime] Machine name:', machine)
+		return machine
 	}
 
-	console.log('[Wakatime] Saving configuration...')
-	saveMachine()
+	private static saveMachine(): void {
+		const machineInput = document.getElementById(
+			ELEMENTS.API_HOSTNAME
+		) as HTMLInputElement
+		const machineName = machineInput?.value?.trim()
+
+		if (!machineName) return
+
+		console.log(`[Wakatime] Saving machine name as "${machineName}"`)
+		localStorage.setItem(CONFIG.STORAGE_MACHINE, machineName)
+	}
+
+	public static manageStorage(shouldReset: boolean = false): void {
+		if (shouldReset) {
+			console.log('[Wakatime] Resetting configuration...')
+
+			localStorage.removeItem(CONFIG.STORAGE_MACHINE)
+
+			const machineNameInput = document.getElementById(
+				ELEMENTS.API_HOSTNAME
+			) as HTMLInputElement
+
+			machineNameInput.value = null
+			return
+		}
+
+		console.log('[Wakatime] Saving configuration...')
+		Storage.saveMachine()
+	}
 }

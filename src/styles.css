@@ -1,0 +1,63 @@
+body {
+	padding: 0 16px;
+	border-color: var(--uxp-host-border-color);
+	font-size: var(--uxp-host-font-size);
+}
+
+footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	color: var(--spectrum-gray-800);
+	background-color: var(--spectrum-gray-200);
+}
+.wrapper > * {
+	flex: 0 0 auto;
+	margin: 4px 0;
+}
+
+.small_text {
+	color: var(--uxp-host-text-color-secondary);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+.row > * {
+	margin: 0 8px;
+}
+.row > *:first-child {
+	margin-left: 0;
+}
+.row > *:last-child {
+	margin-right: 0;
+}
+.row sp-textfield,
+.row sp-checkbox,
+.row h5 {
+	flex: 1 1 auto;
+}
+.row sp-button,
+.row sp-action-button {
+	margin: 0;
+	flex: 0 0 auto;
+}
+
+#waka_error_msg {
+	color: red;
+	font-weight: bold;
+}

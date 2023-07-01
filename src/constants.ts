@@ -3,7 +3,7 @@ export enum CONFIG {
 	STORAGE_PLUGIN_ENABLED = 'secure_wakatime_enabled',
 	STORAGE_API_KEY = 'secure_wakatime_key',
 	STORAGE_MACHINE = 'secure_wakatime_machine',
-	HEARTBEAT_INTERVAL = 12000, //* 2min interval
+	HEARTBEAT_INTERVAL = 120000, //* 2min interval
 }
 
 export enum ELEMENTS {
@@ -23,5 +23,6 @@ export enum STATUS {
 	INVALID_API_KEY,
 	NO_API_KEY_PROVIDED,
 	UNAUTHORIZED,
+	DISCONNECTED,
 	CONNECTED,
 }

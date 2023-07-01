@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+	<Extension Id="typescript.webpack.wakatime.panel">
+        <HostList>
+            <Host Name="PHSP" Port="7778"/>
+            <Host Name="PHXS" Port="7778"/>
+            <Host Name="IDSN" Port="7778"/>
+            <Host Name="AICY" Port="7778"/>
+            <Host Name="ILST" Port="7778"/>
+            <Host Name="PPRO" Port="7778"/>
+            <Host Name="PRLD" Port="7778"/>
+            <Host Name="AEFT" Port="7778"/>
+            <Host Name="FLPR" Port="7778"/>
+            <Host Name="AUDT" Port="7778"/>
+            <Host Name="DRWV" Port="7778"/>
+            <Host Name="KBRG" Port="7778"/>
+            <Host Name="RUSH" Port="7778"/>
+        </HostList>
+    </Extension>
+</ExtensionList>
