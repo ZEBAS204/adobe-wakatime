@@ -3,11 +3,16 @@ const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const ZipPlugin = require('zip-webpack-plugin')
 
 const IS_DEV = process.env.NODE_ENV !== 'production'
 const IS_UXP = process.env.TYPE === 'uxp'
 
-module.exports = {
+console.log(IS_DEV ? 'DEVELOPMENT BUILD' : 'PRODUCTION BUILD')
+console.log(`BUILDING ${IS_UXP ? 'UXP PLUGIN' : 'CEP EXTENSION'}`)
+
+const config = {
 	entry: `./src/index_${IS_UXP ? 'uxp' : 'cep'}.ts`,
 	mode: IS_DEV ? 'development' : 'production',
 	target: 'node',
@@ -86,3 +91,44 @@ module.exports = {
 		ignored: ['dist', 'node_modules'],
 	},
 }
+
+//* Additional steps for production build
+if (!IS_DEV) {
+	config.optimization = {
+		moduleIds: 'named',
+		minimize: true,
+		minimizer: [
+			// Make code smaller but keep it somehow readable since it is open-source.
+			// So it will be easier to debug production builds.
+			new TerserPlugin({
+				extractComments: true,
+				parallel: true,
+				terserOptions: {
+					mangle: false,
+					compress: {
+						conditionals: false,
+						drop_console: true,
+						drop_debugger: true,
+						comparisons: false,
+						collapse_vars: false,
+						booleans: false,
+						inline: false,
+						keep_classnames: true,
+					},
+				},
+			}),
+		],
+	}
+
+	//* Pack plugin automatically in ./release folder
+	config.plugins.push(
+		new ZipPlugin({
+			path: '../release',
+			pathPrefix: 'wakatime-adobe',
+			filename: `wakatime-adobe-${IS_UXP ? 'uxp' : 'cep'}`,
+			extension: 'zip',
+		})
+	)
+}
+
+module.exports = config
