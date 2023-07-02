@@ -36,18 +36,16 @@
 
 			<sp-divider size="s"></sp-divider>
 
-			<div class="row">
-				<div>
-					<sp-field-label for="waka_key">Your API key</sp-field-label>
+			<div>
+				<sp-field-label for="waka_key">Your API key</sp-field-label>
+				<div class="row">
 					<sp-textfield
 						id="waka_key"
 						type="password"
 						placeholder="API key (waka_...)"
 					></sp-textfield>
+					<sp-button id="waka_submitkey" size="m" variant="accent">Save</sp-button>
 				</div>
-				<sp-button id="waka_submitkey" size="m" variant="accent">
-					Save
-				</sp-button>
 			</div>
 			<div id="waka_error_msg"></div>
 
