@@ -64,7 +64,8 @@
                         </MaxSize>
                     </Geometry>
                     <Icons>
-                        <Icon Type="Normal">./icons/plugin-icon.png</Icon>
+                        <Icon Type="Normal">./icons/light.png</Icon>
+						<Icon Type="DarkNormal">./icons/dark.png</Icon>
                     </Icons>
                 </UI>
             </DispatchInfo>
