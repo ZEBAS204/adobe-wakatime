@@ -51,6 +51,8 @@ const updateTheme = () => {
 	else if (value <= LIGHT * 4) theme = 'light'
 
 	console.log('[WakaTime] Updating "sp-theme" to', theme)
+	const { red, green, blue } = themeInfo.panelBackgroundColor.color
+	element.style.background = `rgb(${red},${green},${blue})`
 	element.setAttribute('color', theme)
 }
 
