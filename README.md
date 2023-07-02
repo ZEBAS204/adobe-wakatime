@@ -1,21 +1,22 @@
-# Wakatime Adobe Photoshop Plugin
+# Wakatime Adobe Plugin
 
 <img alt="Plugin preview" align="right" width="302" height="452" src=".github/preview.png">
 
-The Wakatime plugin is a powerful integration that brings [Wakatime](https://wakatime.com/)'s time-tracking functionality to Adobe Photoshop.
+The Wakatime plugin is a powerful integration that brings [Wakatime](https://wakatime.com/)'s time-tracking functionality to Adobe products.
 
 **Currently supported features:**
 
 - [x] Tracking time (every 2 min)
 - [x] Tracking file path
 - [x] Tracking file name
+- [x] Tracking machine name
 
 By default, the plugin will show in your dashboard like this:
 
 - **File:** The path of the file or the name (if the path is unavailable)
 - **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
-- **Project name:** `Adobe {app_name}` (lowercase, eg. `Adobe Photoshop`)
-- **Editor:** `Adobe-{app_name}` (uppercase, eg. `Adobe-Photoshop`)
+- **Project name:** `Adobe {app_name}` (e.g. `Adobe Photoshop`)
+- **Editor:** `Adobe-{app_name}` (eg. `Adobe-Photoshop`)
 - **Category:** Designing
 - **Machine:** `Unknown Hostname` - You will have to manually specify it in UXP!
 
@@ -23,7 +24,7 @@ You can modify the project names, languages, category, etc. using the [Custom ru
 
 ## Supported Adobe Applications
 
-This plugin uses **Adobe Manifest v5**. Versions after `23.3.0` (UXP 6.0 or higher) should work as intended.
+This plugin uses **Adobe Manifest v5** and **Adobe CEP 11**. Versions after `23.3.0` (UXP 6.0 or higher) should work as intended.
 While older versions may also work, please note that they are not officially supported.
 
 > **Warning**
@@ -33,33 +34,56 @@ While older versions may also work, please note that they are not officially sup
 
 ### UXP Compatible Applications
 
-**Applications supported:**
+<details open>
+<summary><b>Applications supported:</b></summary>
+<blockquote>
 
 - Photoshop
-- XD has not been tested, it has its [own implementation](https://wakatime.com/adobe-xd).
+- XD has its [own implementation here](https://wakatime.com/adobe-xd)
 
-1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
+</blockquote>
+</details>
+
+1. Download the latest version of `wakatime-adobe-uxp.zip` from the [Releases page](https://github.com/ZEBAS204/adobe-wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe-wakatime/releases/latest/download/wakatime-adobe-uxp.zip).
 2. Locate the plugins folder (default location):
-  - **Windows:** `C:\Program Files\Adobe\Adobe Photoshop 20xx\Plug-ins/`
-  - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
+   - **IMPORTANT: If the directory does not exist, you must create it manually.**
+   - **Windows:** `C:\Program Files\Adobe\Adobe Photoshop 20xx\Plug-ins\`
+   - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `Plug-ins` folder.
 
-### CEP Compatible Applications (WIP - Not currently available)
+### CEP Compatible Applications
 
-**Applications supported:**
+<details open>
+<summary><b>Applications supported:</b></summary>
+<blockquote>
 
-- Photoshop (only if `legacy` is available, use [UXP](#uxp-compatible-applications) instead)
+- Photoshop (only if `legacy` is available, you must uncomment `PHSP` & `PHXS` from `CSXS/manifest.xml`. Use [UXP](#uxp-compatible-applications) instead)
 - Illustrator
 - After Effects
-- **Please note:** while these applications have been tested with this plugin, there may be other compatible Adobe applications that are not listed here.
+- Premiere Pro
+- **Please note:** these applications have been tested with this plugin, there may be other compatible Adobe applications that are not listed here.
+
+</blockquote>
+</details>
 
 > **Warning**
 > You **must Enable loading of unsigned panels**. You can find the [tutorial on how to do it here](https://github.com/Adobe-CEP/Samples/tree/master/PProPanel#2-enable-loading-of-unsigned-panels).
 
-1. Download the latest version of the plugin from the [Releases page](https://github.com/ZEBAS204/adobe_wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe_wakatime/releases/latest/download/wakatime-adobe.zip)
-2. Locate the plugins folder (default location):
-  - **Windows:** `C:\Program Files (x86)\Common Files\Adobe\CEP\extensions` or `%appdata%\Adobe\CEP\extensions\` (if the directory isn't there, you must create it manually)
-  - **macOS:** `~/Library/Application Support/Adobe/CEP/extensions/`
+1. Download the latest version of `wakatime-adobe-cep.zip` from the [Releases page](https://github.com/ZEBAS204/adobe-wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe-wakatime/releases/latest/download/wakatime-adobe-cep.zip).
+2. Locate the extensions folder (CEP supports 2 types of folders for unsigned extensions):
+
+   - **IMPORTANT: If the directory does not exist, you must create it manually.**
+
+   - **System extension folder**
+
+     - **Win(x86):** `C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\`
+     - **Win(x64):** `C:\Program Files\Common Files\Adobe\CEP\extensions\`
+     - **macOS:** `~/Library/Application Support/Adobe/CEP/extensions/`
+
+   - **Per-user extension folder**
+     - **Windows:** `C:\Users\<USERNAME>\AppData\Roaming\Adobe\CEP\extensions\`
+     - **macOS:** `~/Library/Application Support/Adobe/CEP/extensions/`
+
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `extensions` folder.
 
 ## Usage
@@ -67,7 +91,7 @@ While older versions may also work, please note that they are not officially sup
 1. Open Adobe Photoshop after you installed this plugin.
 2. Select **Plugins > Wakatime** in the toolbar or go to the **Plugins panel** and choose **Plugins > Plugins panel > Wakatime**.
 3. Paste your **API key** into the input field and click the **Save** button ([Get your API key here](https://wakatime.com/api-key)).
-4. **(Optional)** Provide your machine name ([found in your dashboard](https://wakatime.com/dashboard)) in the **Machine name** input field. Setting this field helps avoid displaying "Unknown Hostname" on your dashboard.
+4. **(Optional, UXP only)** Provide your machine name ([found in your dashboard](https://wakatime.com/dashboard)) in the **Machine name** input field. Setting this field helps avoid displaying "Unknown Hostname" on your dashboard.
 5. The `status` should automatically update if the plugin is tracking time (it sends data every 2 minutes)
    - If it still shows "Disconnected," make sure you have an open file for the plugin to work. Don't worry if it initially shows "Disconnected" before you open a file.
 6. To disable the plugin, **uncheck** the "Plugin enabled" checkbox.
@@ -121,4 +145,6 @@ npm run watch
 
 ---
 
-Based on [UXP Photoshop Plugin Samples: Photoshop TypeScript / Webpack Sample](https://github.com/AdobeDocs/uxp-photoshop-plugin-samples/tree/main/typescript-webpack-sample)
+Based on [UXP Photoshop Plugin Samples: Photoshop TypeScript / Webpack Sample](https://github.com/AdobeDocs/uxp-photoshop-plugin-samples/tree/main/typescript-webpack-sample).
+
+You can find all [CEP 11 documentation here](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md).
