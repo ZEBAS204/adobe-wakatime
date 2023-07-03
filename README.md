@@ -96,7 +96,7 @@ While older versions may also work, please note that they are not officially sup
    - If it still shows "Disconnected," make sure you have an open file for the plugin to work. Don't worry if it initially shows "Disconnected" before you open a file.
 6. To disable the plugin, **uncheck** the "Plugin enabled" checkbox.
 
-### Status meaning
+### Status Meaning
 
 - **Status: Connected** - The plugin is working as intended.
 - **Status: Disconnected** - The plugin only works when you have an open file and an internet connection. Make sure you have an open file and you are not on the Home screen.
@@ -111,37 +111,64 @@ While older versions may also work, please note that they are not officially sup
 
 ## Development
 
-### Prerequisites
+### CEP
 
-1. Install [Adobe UXP Developer Tool](https://github.com/adobe-uxp/devtools-cli). Please, follow the instructions in the repository.
-2. Enable Photoshop Developer Mode, go to **Edit > Preferences > Plugins > Enable Developer Mode** (you will need to relaunch Photoshop for the changes to take effect)
-3. Load this plugin directly in Photoshop using the UXP Developer Tools application. Once started, click "Add Plugin..." and navigate to the "[manifest.json](plugin/manifest.json)" file in this folder.
-4. If the plugin was not automatically loaded, click "Load" in the action dropdown menu (three dots)
-5. Click "Watch" in the action dropdown menu (three dots)
+#### Development Workflow for CEP
 
-### Installation
+1. Install the project dependencies, execute: `npm install`
+2. Run the CEP watch mode to automatically rebuild the plugin whenever changes are made. Execute: `npm run watch:cep`
 
-To install the dependencies, run the following command:
+#### Debugging CEP Plugins
 
-```shell
-npm install
-```
+To use the CEP plugin with the supported Adobe applications (listed in [`plugin/CSXS/manifest.xml`](./plugin/CSXS/manifest.xml)), you need to copy the `dist` folder to the appropriate location. The [`CEP.sh`](./scripts/CEP.sh) shell script automates this process.
 
-After installing the dependencies, build the plugin's `plugin/index.js` file (loaded by `index.html`) by running:
+*Follow the steps below to correctly debug the plugin:*
+
+1. Locate the `CEP.sh` file in the `scripts` folder.
+2. Open the `CEP.sh` file and specify the destination folder path for the `extensions` folder. Update the script accordingly (see [Installation: CEP Compatible Applications](#cep-compatible-applications) for the default paths)
+3. Save the changes to the `CEP.sh` file.
+4. Run the `CEP.sh` script. It will automatically copy the `dist` folder to the defined path.
+5. Open any of the supported applications and open the plugin panel. Select **Window > Extensions > Wakatime** in the toolbar.
+6. Open your browser, a Chromium-based browser is recommended for the best experience, and navigate to default host port [`localhost:7778`](http://localhost:7778/) (you can manually update all hosts debugging ports in [`plugin/.debug`](./plugin/.debug) file)
+7. Whenever you make changes to the CEP plugin code, run the `CEP.sh` script again. In the DevTools, click the reload button (located at the top-left corner) to load the updated version of the CEP plugin.
+
+### UXP
+
+#### Prerequisites UXP
+
+1. Install the [Adobe UXP Developer Tool](https://github.com/adobe-uxp/devtools-cli) by following the instructions provided in the repository.
+2. Enable Developer Mode if available (eg. in Photoshop), go to **Edit > Preferences > Plugins > Enable Developer Mode** (you will need to relaunch Photoshop for the changes to take effect)
+
+#### Development Workflow for UXP
+
+1. Install the project dependencies, execute: `npm install`
+2. Run the UXP watch mode to automatically rebuild the plugin whenever changes are made. Execute: `npm run watch:uxp`
+3. Launch the UXP Developer Tools application.
+4. Load the plugin directly in Adobe Photoshop using the UXP Developer Tools application:
+   1. Click on "Add Plugin..." and navigate to the [`dist/manifest.json`](./dist/manifest.json) file in the project directory.
+      - **Make sure that you use the `dist` folder and NOT the `plugin` folder when loading the plugin.**
+   3. If the plugin was not automatically loaded, click "Load" in the action dropdown menu (three dots)
+5. Enable live-reloading, click "Watch" in the action dropdown menu (three dots)
+6. In the same dropdown menu, you can open the Chrome/Plugin dev tools by clicking "Debug"
+
+## Building
+
+To build both the UXP and CEP plugins simultaneously, execute the following command:
 
 ```shell
 npm run build
+
+# Or only UXP:
+npm run build:uxp
+
+# Or only CEP:
+npm run build:cep
 ```
 
-Internally, this command runs `webpack` and builds `plugin/index.js` from the `src/index.ts` file.
+This command will compile both the UXP and CEP. The generated files will be packaged into a `zip` file located in the `release` folder as `wakatime-adobe-uxp` and `wakatime-adobe-cep`. Code optimizations will be applied and some debugging files removed.
 
-### Watch mode
-
-To automatically build the code whenever changes are made, start the watch mode (ensure UXP is watching the plugin folder, see [Prerequisites](#prerequisites)) by running:
-
-```shell
-npm run watch
-```
+> **Warning**
+> Sometimes Typescript loses track of [CSInterface library](./plugin/lib/CSInterface.js). To fix any errors, copy the file from `plugin/lib/CSInterface.js` to the `src` folder.
 
 ---
 
