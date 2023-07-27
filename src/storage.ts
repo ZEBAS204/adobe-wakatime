@@ -28,10 +28,7 @@ export default class Storage {
 	public static async getApiKey(): Promise<string> {
 		if (Storage.API_CACHE) return Storage.API_CACHE
 
-		// We get the stored value from the secureStorage in the form of a uint8Array.
 		const secureKey = localStorage.getItem(CONFIG.STORAGE_API_KEY)
-		// We convert the uint8Array to a string to present it to the user.
-
 		Storage.API_CACHE = secureKey
 		return secureKey
 	}

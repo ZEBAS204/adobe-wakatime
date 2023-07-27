@@ -28,7 +28,7 @@ export class WakaTimePlugin {
 
 		this.intervalRef = setInterval(async () => {
 			const activeFile = await this.getActiveFile()
-			console.log('Active file:', activeFile)
+			console.log('[Wakatime] Active file:', activeFile)
 			if (!activeFile) return
 
 			const heartbeatResponse = await sendHeartbeat({
@@ -36,7 +36,7 @@ export class WakaTimePlugin {
 				time: Date.now(),
 			})
 
-			console.log('heartbeat response:', heartbeatResponse)
+			console.log('[Wakatime] Heartbeat response:', heartbeatResponse)
 			updateConnectionStatus(heartbeatResponse)
 		}, CONFIG.HEARTBEAT_INTERVAL)
 	}
