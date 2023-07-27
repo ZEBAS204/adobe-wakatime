@@ -12,8 +12,10 @@ export default class Storage {
 		const key = userInput.value
 		userInput.type = 'password'
 
-		// API keys start with waka_
-		if (!key.length || !key.startsWith('waka_')) {
+		// API keys *can* start with waka_
+		const re = /^(waka_)?[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
+
+		if (!key.length || !re.test(key)) {
 			errorMessage.textContent = 'Invalid API key'
 			return
 		}
