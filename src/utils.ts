@@ -38,7 +38,7 @@ export class HostInformation {
 		const { host, versions } = require('uxp')
 		// Wakatime uses the user agent to identify the application, OS and extension.
 		const APP_NAME = host.name as string
-		const APP_NAME_L = APP_NAME.toLocaleLowerCase()
+		const APP_NAME_L = APP_NAME.toLocaleLowerCase().replace(' ', '-')
 		const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/${versions.plugin}`
 		// We need to remove any numbers from the platform as win32/win10 is not recognized and will be
 		// labeled as Unknown OS. Wakatime accepts {os_name}_{os_version} format.
@@ -79,7 +79,8 @@ export class HostInformation {
 			return name
 		})()
 
-		const PLUGIN_NAME = `adobe-${APP_NAME.toLowerCase()}-wakatime/1.0.0`
+		const APP_NAME_L = APP_NAME.toLowerCase().replace(' ', '-')
+		const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/1.0.0`
 		const AGENT_OS = `${platform().replace(/\d/g, '')}_${arch()}`
 		const USER_AGENT = `${APP_NAME}/${HOST_INFO.appVersion} ${AGENT_OS} ${PLUGIN_NAME}`
 
