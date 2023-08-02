@@ -147,7 +147,7 @@ To use the CEP plugin with the supported Adobe applications (listed in [`plugin/
 4. Load the plugin directly in Adobe Photoshop using the UXP Developer Tools application:
    1. Click on "Add Plugin..." and navigate to the [`dist/manifest.json`](./dist/manifest.json) file in the project directory.
       - **Make sure that you use the `dist` folder and NOT the `plugin` folder when loading the plugin.**
-   3. If the plugin was not automatically loaded, click "Load" in the action dropdown menu (three dots)
+   2. If the plugin was not automatically loaded, click "Load" in the action dropdown menu (three dots)
 5. Enable live-reloading, click "Watch" in the action dropdown menu (three dots)
 6. In the same dropdown menu, you can open the Chrome/Plugin dev tools by clicking "Debug"
 
