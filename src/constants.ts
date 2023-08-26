@@ -1,3 +1,8 @@
+export const PLUGIN = {
+	VERSION: require('../package.json').version.toString(),
+	UPDATE_URL: 'https://api.github.com/repos/ZEBAS204/adobe-wakatime/releases/latest'
+}
+
 export enum CONFIG {
 	WAKATIME_API_ENDPOINT = 'https://api.wakatime.com/api/v1/users/current/heartbeats', // ?api_key=... will be append at the end
 	STORAGE_PLUGIN_ENABLED = 'secure_wakatime_enabled',
