@@ -1,4 +1,4 @@
-import { ELEMENTS, STATUS } from './constants'
+import { PLUGIN, ELEMENTS, STATUS } from './constants'
 import Storage from './storage'
 
 export const updateConnectionStatus = (status: STATUS) => {
@@ -35,11 +35,11 @@ export class HostInformation {
 
 	public static init_UXP(): void {
 		const { platform, arch } = require('os')
-		const { host, versions } = require('uxp')
+		const { host } = require('uxp')
 		// Wakatime uses the user agent to identify the application, OS and extension.
 		const APP_NAME = host.name as string
 		const APP_NAME_L = APP_NAME.toLocaleLowerCase().replace(' ', '-')
-		const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/${versions.plugin}`
+		const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/${PLUGIN.VERSION}`
 		// We need to remove any numbers from the platform as win32/win10 is not recognized and will be
 		// labeled as Unknown OS. Wakatime accepts {os_name}_{os_version} format.
 		const AGENT_OS = `${platform().replace(/\d/g, '')}_${arch()}`
@@ -80,7 +80,7 @@ export class HostInformation {
 		})()
 
 		const APP_NAME_L = APP_NAME.toLowerCase().replace(' ', '-')
-		const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/1.0.0`
+		const PLUGIN_NAME = `adobe-${APP_NAME_L}-wakatime/${PLUGIN.VERSION}`
 		const AGENT_OS = `${platform().replace(/\d/g, '')}_${arch()}`
 		const USER_AGENT = `${APP_NAME}/${HOST_INFO.appVersion} ${AGENT_OS} ${PLUGIN_NAME}`
 
