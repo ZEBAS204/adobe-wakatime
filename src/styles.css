@@ -61,3 +61,11 @@ footer {
 	color: red;
 	font-weight: bold;
 }
+
+#waka_update_available {
+	display: none;
+	padding: 4px;
+	border-radius: 5px;
+	border: 2px solid currentColor;
+	text-align: center;
+}
