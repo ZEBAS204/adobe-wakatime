@@ -1,6 +1,6 @@
 export const PLUGIN = {
 	VERSION: require('../package.json').version.toString(),
-	UPDATE_URL: 'https://api.github.com/repos/ZEBAS204/adobe-wakatime/releases/latest'
+	UPDATE_URL: 'https://api.github.com/repos/ZEBAS204/adobe-wakatime/releases/latest',
 }
 
 export enum CONFIG {
@@ -20,6 +20,7 @@ export enum ELEMENTS {
 	INPUT_ERROR_MESSAGE = 'waka_error_msg',
 	API_CONNECTION_STATUS = 'connectionStatus',
 	EXTENSION_ENABLED_CHECKBOX = 'waka_enabled',
+	EXTENSION_UPDATE_AVAILABLE = 'waka_update_available',
 }
 
 export enum STATUS {

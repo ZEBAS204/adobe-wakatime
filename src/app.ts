@@ -1,6 +1,6 @@
 import './styles.css'
 import { ELEMENTS, CONFIG, STATUS } from './constants'
-import { updateConnectionStatus } from './utils'
+import { updateConnectionStatus, isLastestVersion } from './utils'
 import { sendHeartbeat } from './wakatime'
 import Storage from './storage'
 
@@ -57,6 +57,11 @@ export class WakaTimePlugin {
 		document
 			.getElementById(ELEMENTS.CONFIG_RESET_BTN)
 			?.addEventListener('click', this.handleConfigResetClick)
+
+		isLastestVersion().then((isLatest) => {
+			if (!isLatest)
+				document.getElementById(ELEMENTS.EXTENSION_UPDATE_AVAILABLE).style.display = 'block'
+		})
 	}
 
 	private static handleApiKeySaveClick = async (): Promise<void> => {
