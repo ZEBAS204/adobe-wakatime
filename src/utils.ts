@@ -27,14 +27,11 @@ export const updateConnectionStatus = (status: STATUS) => {
 	}
 }
 
-// FIXME: UXP request fails
 export const isLastestVersion = async (): Promise<boolean> => {
 	console.log('[WakaTime] Checking latest plugin version...')
 
 	return await fetch(PLUGIN.UPDATE_URL)
 		.then((response) => {
-			console.log('Response Status:', response.status)
-			console.log('Response Headers:', response.headers)
 			if (!response.ok)
 				throw new Error(`[WakaTime] GitHub API request failed with status: ${response.status}`)
 			return response.json()
@@ -44,7 +41,6 @@ export const isLastestVersion = async (): Promise<boolean> => {
 			// Remove the 'v' prefix from the version
 			const latestVersion = data.tag_name.replace('v', '')
 
-			// Perform Semver comparison
 			if (latestVersion === PLUGIN.VERSION) {
 				console.log(`[WakaTime] Using the latest version (v${PLUGIN.VERSION})`)
 				return true
