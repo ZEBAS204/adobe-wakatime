@@ -16,10 +16,19 @@ export default class Storage {
 		const re = /^(waka_)?[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
 
 		if (!key.length || !re.test(key)) {
+			userInput.setAttribute('invalid', 'true')
 			errorMessage.textContent = 'Invalid API key'
 			return
 		}
+
+		userInput.removeAttribute('invalid')
 		errorMessage.textContent = ''
+
+		//* Visual feedback that the key saved
+		userInput.setAttribute('valid', 'true')
+		setTimeout(() => {
+				userInput.removeAttribute('valid')
+		}, 1500)
 
 		Storage.API_CACHE = key
 		localStorage.setItem(CONFIG.STORAGE_API_KEY, key.trim())
