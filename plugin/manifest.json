@@ -13,7 +13,7 @@
 	},
 	"requiredPermissions": {
 		"network": {
-			"domains": ["https://wakatime.com", "https://api.wakatime.com", "https://api.github.com"]
+			"domains": ["https://*.wakatime.com", "https://api.github.com"]
 		},
 		"launchProcess": {
 			"schemes": ["https"]
