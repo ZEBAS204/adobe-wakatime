@@ -16,6 +16,8 @@ export const sendHeartbeat = async (data: HeartbeatData): Promise<STATUS> => {
 		return STATUS.NO_API_KEY_PROVIDED
 	}
 
+	const project = Storage.getProjectName()
+
 	const response = await fetch(`${CONFIG.WAKATIME_API_ENDPOINT}?api_key=${apiKey}`, {
 		method: 'POST',
 		credentials: 'omit',
@@ -25,7 +27,7 @@ export const sendHeartbeat = async (data: HeartbeatData): Promise<STATUS> => {
 			time: Math.floor(time / 1000),
 			entity: file,
 			type: 'file',
-			project: `Adobe ${HostInformation.APP_NAME}`,
+			project: project || `Adobe ${HostInformation.APP_NAME}`,
 			category: 'designing',
 			language: HostInformation.APP_NAME,
 			plugin: HostInformation.PLUGIN_NAME,
