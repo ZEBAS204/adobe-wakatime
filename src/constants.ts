@@ -14,6 +14,7 @@ export enum CONFIG {
 export enum ELEMENTS {
 	API_KEY_INPUT = 'waka_key',
 	API_HOSTNAME = 'waka_api_hostname',
+	API_PROJECTNAME = 'waka_api_projectname',
 	API_KEY_SAVE_BTN = 'waka_submitkey',
 	CONFIG_RESET_BTN = 'waka_reset_config',
 	CONFIG_SAVE_BTN = 'waka_save_config',

@@ -98,8 +98,8 @@ export default class Storage {
 			localStorage.removeItem(CONFIG.STORAGE_MACHINE)
 
 			const machineNameInput = document.getElementById(ELEMENTS.API_HOSTNAME) as HTMLInputElement
+			if (machineNameInput) machineNameInput.value = null
 
-			machineNameInput.value = null
 			return
 		}
 

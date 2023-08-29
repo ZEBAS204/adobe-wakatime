@@ -60,6 +60,15 @@
 				Plugin enabled
 			</sp-checkbox>
 
+			<div>
+				<sp-field-label for="waka_api_hostname">
+					Project name
+				</sp-field-label>
+				<sp-textfield
+					id="waka_api_projectname"
+				></sp-textfield>
+			</div>
+
 			<% if(htmlWebpackPlugin.options.isUXP) {%>
 			<div>
 				<sp-field-label for="waka_api_hostname">
@@ -69,14 +78,14 @@
 					id="waka_api_hostname"
 					placeholder="Default: Unknown"
 				></sp-textfield>
-			</div>
+				</div>
+			<% } %>
 
 			<footer>
 				<sp-action-button id="waka_reset_config">Reset</sp-action-button>
 				<sp-action-button id="waka_save_config">Save</sp-action-button>
 			</footer>
 			<sp-divider size="s"></sp-divider>
-			<% } %>
 
 			<div style="flex: 1 1 auto"></div>
 
