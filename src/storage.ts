@@ -27,14 +27,14 @@ export default class Storage {
 		//* Visual feedback that the key saved
 		userInput.setAttribute('valid', 'true')
 		setTimeout(() => {
-				userInput.removeAttribute('valid')
+			userInput.removeAttribute('valid')
 		}, 1500)
 
 		Storage.API_CACHE = key
 		localStorage.setItem(CONFIG.STORAGE_API_KEY, key.trim())
 	}
 
-	public static async getApiKey(): Promise<string> {
+	public static getApiKey(): string {
 		if (Storage.API_CACHE) return Storage.API_CACHE
 
 		const secureKey = localStorage.getItem(CONFIG.STORAGE_API_KEY)

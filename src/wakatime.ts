@@ -10,7 +10,7 @@ export const sendHeartbeat = async (data: HeartbeatData): Promise<STATUS> => {
 	const { file, time } = data
 	console.log('[WakaTime] Sending heartbeat:', file)
 
-	const apiKey = await Storage.getApiKey()
+	const apiKey = Storage.getApiKey()
 	if (!apiKey) {
 		console.error('[WakaTime] No API key provided for sendHearteat()')
 		return STATUS.NO_API_KEY_PROVIDED
