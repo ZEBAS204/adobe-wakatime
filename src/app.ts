@@ -22,6 +22,7 @@ export class WakaTimePlugin {
 
 	public static init(): void {
 		if (!Storage.isExtensionEnabled()) {
+			this.stop()
 			updateConnectionStatus(STATUS.DISCONNECTED)
 			return
 		}
