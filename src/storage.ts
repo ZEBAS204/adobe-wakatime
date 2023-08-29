@@ -66,6 +66,29 @@ export default class Storage {
 		return isEnabled
 	}
 
+	public static saveProjectName(): void {
+		const projectInput = document.getElementById(ELEMENTS.API_PROJECTNAME) as HTMLInputElement
+		const projectName = projectInput?.value?.trim()
+
+		if (!projectName) return
+
+		console.log(`[Wakatime] Saving project name: "${projectName}"`)
+		localStorage.setItem(CONFIG.STORAGE_PROJECTNAME, projectName)
+	}
+
+	public static getProjectName(): string | null {
+		console.log('[Wakatime] Requesting project name...')
+
+		const projectValue = localStorage.getItem(CONFIG.STORAGE_PROJECTNAME)
+		const project = projectValue?.length ? projectValue : null
+
+		// Always sync the input value
+		const input = document.getElementById(ELEMENTS.API_PROJECTNAME) as HTMLInputElement
+		if (input && project) input.value = project
+
+		return project
+	}
+
 	public static getMachineName(): string | null {
 		console.log('[Wakatime] Requesting machine name...')
 
@@ -74,7 +97,6 @@ export default class Storage {
 
 		// Always sync the input value
 		const input = document.getElementById(ELEMENTS.API_HOSTNAME) as HTMLInputElement
-
 		if (input && machine) input.value = machine
 
 		console.log('[Wakatime] Machine name:', machine)
@@ -96,14 +118,19 @@ export default class Storage {
 			console.log('[Wakatime] Resetting configuration...')
 
 			localStorage.removeItem(CONFIG.STORAGE_MACHINE)
+			localStorage.removeItem(CONFIG.STORAGE_PROJECTNAME)
 
 			const machineNameInput = document.getElementById(ELEMENTS.API_HOSTNAME) as HTMLInputElement
 			if (machineNameInput) machineNameInput.value = null
+
+			const projectNameInput = document.getElementById(ELEMENTS.API_PROJECTNAME) as HTMLInputElement
+			projectNameInput.value = null
 
 			return
 		}
 
 		console.log('[Wakatime] Saving configuration...')
 		Storage.saveMachine()
+		Storage.saveProjectName()
 	}
 }
