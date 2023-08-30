@@ -70,7 +70,12 @@ export default class Storage {
 		const projectInput = document.getElementById(ELEMENTS.API_PROJECTNAME) as HTMLInputElement
 		const projectName = projectInput?.value?.trim()
 
-		if (!projectName) return
+		if (!projectName) {
+			console.log('[WakaTime] Cleared project name')
+			projectInput.value = ''
+			localStorage.removeItem(CONFIG.STORAGE_PROJECTNAME)
+			return
+		}
 
 		console.log(`[Wakatime] Saving project name: "${projectName}"`)
 		localStorage.setItem(CONFIG.STORAGE_PROJECTNAME, projectName)
