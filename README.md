@@ -1,6 +1,6 @@
 # Wakatime Adobe Plugin
 
-<img alt="Plugin preview" align="right" width="302" height="452" src=".github/preview.png">
+<img alt="Plugin panel preview" align="right" width="302" height="452" src=".github/preview.png">
 
 The Wakatime plugin is a powerful integration that brings [Wakatime](https://wakatime.com/)'s time-tracking functionality to Adobe products.
 
@@ -15,12 +15,12 @@ By default, the plugin will show in your dashboard like this:
 
 - **File:** The path of the file or the name (if the path is unavailable)
 - **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
-- **Project name:** `Adobe {app_name}` (e.g. `Adobe Photoshop`)
+- **Project name:** `Adobe {app_name}` (e.g. `Adobe Photoshop`) or define your own custom project name.
 - **Editor:** `Adobe-{app_name}` (eg. `Adobe-Photoshop`)
 - **Category:** Designing
 - **Machine:** `Unknown Hostname` - You will have to manually specify it in UXP!
 
-You can modify the project names, languages, category, etc. using the [Custom rules](https://wakatime.com/settings/rules) in your dashboard.
+You can modify the project name, language, category, etc. using the [Custom rules](https://wakatime.com/settings/rules) in your dashboard.
 
 ## Supported Adobe Applications
 
@@ -86,9 +86,13 @@ While older versions may also work, please note that they are not officially sup
 
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `extensions` folder.
 
+### Updating
+
+To update, follow the same steps as the initial installation for either [CEP](#cep-compatible-applications) or [UXP](#uxp-compatible-applications). Remove the previous `wakatime-adobe` folder and replace it with the latest version from the zip file.
+
 ## Usage
 
-1. Open Adobe Photoshop after you installed this plugin.
+1. Open Adobe Photoshop after you install this plugin.
 2. Select **Plugins > Wakatime** in the toolbar or go to the **Plugins panel** and choose **Plugins > Plugins panel > Wakatime**.
 3. Paste your **API key** into the input field and click the **Save** button ([Get your API key here](https://wakatime.com/api-key)).
 4. **(Optional, UXP only)** Provide your machine name ([found in your dashboard](https://wakatime.com/dashboard)) in the **Machine name** input field. Setting this field helps avoid displaying "Unknown Hostname" on your dashboard.
