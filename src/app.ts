@@ -17,17 +17,22 @@ export class WakaTimePlugin {
 	}
 
 	public static stop(): void {
+		console.log('[WakaTime] Stopping WakaTime interval')
 		clearInterval(this.intervalRef)
 	}
 
 	public static init(): void {
-		if (!Storage.isExtensionEnabled()) {
+		const isDisabled = !Storage.isExtensionEnabled()
+		if (isDisabled) {
 			this.stop()
 			updateConnectionStatus(STATUS.DISCONNECTED)
 			return
 		}
 
 		this.intervalRef = setInterval(async () => {
+			console.log('[WakaTime] Created heartbeat interval')
+			if (isDisabled) return
+
 			const activeFile = await this.getActiveFile()
 			console.log('[Wakatime] Active file:', activeFile)
 			if (!activeFile) return
@@ -38,6 +43,11 @@ export class WakaTimePlugin {
 			})
 
 			console.log('[Wakatime] Heartbeat response:', heartbeatResponse)
+
+			if (isDisabled) {
+				updateConnectionStatus(STATUS.DISCONNECTED)
+				return
+			}
 			updateConnectionStatus(heartbeatResponse)
 		}, CONFIG.HEARTBEAT_INTERVAL)
 	}
