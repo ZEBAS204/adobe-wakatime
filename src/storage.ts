@@ -3,6 +3,13 @@ import { CONFIG, ELEMENTS } from './constants'
 export default class Storage {
 	private static API_CACHE: string | null
 
+	public static restoreConfigs(): void {
+		// The idea is to sync the saved settings with the text inputs at startup
+		Storage.getApiKey()
+		Storage.getProjectName()
+		Storage.getMachineName()
+	}
+
 	public static async saveSecureKey(): Promise<void> {
 		const userInput = document.getElementById(ELEMENTS.API_KEY_INPUT) as HTMLInputElement
 		const errorMessage = document.getElementById(ELEMENTS.INPUT_ERROR_MESSAGE)
