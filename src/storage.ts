@@ -39,6 +39,11 @@ export default class Storage {
 
 		const secureKey = localStorage.getItem(CONFIG.STORAGE_API_KEY)
 		Storage.API_CACHE = secureKey
+
+		// Always sync the api key value
+		const userInput = document.getElementById(ELEMENTS.API_KEY_INPUT) as HTMLInputElement
+		if (userInput && secureKey) userInput.value = secureKey
+
 		return secureKey
 	}
 
