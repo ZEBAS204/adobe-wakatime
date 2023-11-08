@@ -30,8 +30,8 @@
 				"default": "Wakatime"
 			},
 			"minimumSize": {
-				"width": 310,
-				"height": 220
+				"width": 1,
+				"height": 1
 			},
 			"maximumSize": {
 				"width": 2000,
