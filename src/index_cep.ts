@@ -82,6 +82,14 @@ document.querySelectorAll('sp-link')?.forEach((el) => {
 	})
 })
 
+//* Fix shadowRoot not working properly with text inputs
+// Generates an array of keyboard events ranging from 65(a) to 109(-)
+// This doesn't not include their shift pressing version
+const keyCodes: Partial<KeyboardEvent>[] = [...Array(110-65)].map((_, accumulator) => {
+  return { keyCode: 65 + accumulator };
+})
+csInterface.registerKeyEventsInterest(JSON.stringify(keyCodes))
+
 // Init theme events
 updateTheme()
 csInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, updateTheme, null)
