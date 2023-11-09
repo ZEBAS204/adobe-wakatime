@@ -5,6 +5,7 @@
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
+            <!-- Uncomment the two next lines if you want to be loaded by Photoshop -->
             <!--<Host Name="PHSP" Version="[0.0,99.9]"/>-->
             <!--<Host Name="PHXS" Version="[0.0,99.9]"/>-->
             <Host Name="IDSN" Version="[0.0,99.9]"/>
@@ -38,13 +39,16 @@
                 </Resources>
                 <Lifecycle>
                     <AutoVisible>true</AutoVisible>
-                    <!-- If AutoVisible is false, uncomment this (not supported by some hosts) -->
-                    <!--
                     <StartOn>
+                        <!--
+                            Will be annoying on startup but will ensure the extension is properly loaded even if it's collapsed.
+                        -->
                     	<Event>applicationActivate</Event>
-						<Event>com.adobe.csxs.events.ApplicationActivate</Event>
+                        <!--
+                            Not recommended. This will launch a NEW WINDOW of the extension on Premiere Pro at startup
+                        <Event>com.adobe.csxs.events.ApplicationActivate</Event>
+                        -->
                     </StartOn>
-                    -->
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
