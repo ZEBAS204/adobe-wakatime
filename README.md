@@ -1,5 +1,15 @@
 # Wakatime Adobe Plugin
 
+<table>
+   <tr>
+      <td><a href="#installation">Installation</a></td>
+      <td><a href="#updating">Updating</a></td>
+      <td><a href="#usage">Usage</a></td>
+      <td><a href="#known-issues">Known Issues</a></td>
+      <td><a href="#development">Development</a></td>
+   </tr>
+</table>
+
 <img alt="Plugin panel preview" align="right" width="302" height="452" src=".github/preview.png">
 
 The Wakatime plugin is a powerful integration that brings [Wakatime](https://wakatime.com/)'s time-tracking functionality to Adobe products.
@@ -14,21 +24,21 @@ The Wakatime plugin is a powerful integration that brings [Wakatime](https://wak
 By default, the plugin will show in your dashboard like this:
 
 - **File:** The path of the file or the name (if the path is unavailable)
-- **Language:** `{app_name}` (uppercase, eg. `Photoshop`)
+- **Language:** `{app_name}` (eg. `Photoshop`)
 - **Project name:** `Adobe {app_name}` (e.g. `Adobe Photoshop`) or define your own custom project name.
 - **Editor:** `Adobe-{app_name}` (eg. `Adobe-Photoshop`)
 - **Category:** Designing
 - **Machine:** `Unknown Hostname` - You will have to manually specify it in UXP!
 
-You can modify the project name, language, category, etc. using the [Custom rules](https://wakatime.com/settings/rules) in your dashboard.
+> **Note**
+> **💡** This plugin requires an internet connection and **will not track** time while offline.
+>
+> **💡** You can modify the project name, language, category, etc. using the [Custom rules](https://wakatime.com/settings/rules) in your dashboard.
 
 ## Supported Adobe Applications
 
 This plugin uses **Adobe Manifest v5** and **Adobe CEP 11**. Versions after `23.3.0` (UXP 6.0 or higher) should work as intended.
 While older versions may also work, please note that they are not officially supported.
-
-> **Warning**
-> This plugin requires an internet connection and **will not track** time while offline.
 
 ## Installation
 
@@ -46,7 +56,8 @@ While older versions may also work, please note that they are not officially sup
 
 1. Download the latest version of `wakatime-adobe-uxp.zip` from the [Releases page](https://github.com/ZEBAS204/adobe-wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe-wakatime/releases/latest/download/wakatime-adobe-uxp.zip).
 2. Locate the plugins folder (default location):
-   - **IMPORTANT: If the directory does not exist, you must create it manually.**
+   - > **IMPORTANT**
+      > **If the directory does not exist, you must create it manually.**
    - **Windows:** `C:\Program Files\Adobe\Adobe Photoshop 20xx\Plug-ins\`
    - **macOS:** `~/Library/Applications/Adobe Photoshop 20xx/Plug-ins/`
 3. Extract the `wakatime-adobe` folder from the downloaded zip file into the `Plug-ins` folder.
@@ -58,8 +69,9 @@ While older versions may also work, please note that they are not officially sup
 <blockquote>
 
 - Photoshop (only if `legacy` is available, you must uncomment `PHSP` & `PHXS` from `CSXS/manifest.xml`. Use [UXP](#uxp-compatible-applications) instead)
-- Illustrator
 - After Effects
+- Audition
+- Illustrator
 - Premiere Pro
 - **Please note:** these applications have been tested with this plugin, there may be other compatible Adobe applications that are not listed here.
 
@@ -71,8 +83,8 @@ While older versions may also work, please note that they are not officially sup
 
 1. Download the latest version of `wakatime-adobe-cep.zip` from the [Releases page](https://github.com/ZEBAS204/adobe-wakatime/releases) or [click here to download directly](https://github.com/ZEBAS204/adobe-wakatime/releases/latest/download/wakatime-adobe-cep.zip).
 2. Locate the extensions folder (CEP supports 2 types of folders for unsigned extensions):
-
-   - **IMPORTANT: If the directory does not exist, you must create it manually.**
+   - > **IMPORTANT**
+      > **If the directory does not exist, you must create it manually.**
 
    - **System extension folder**
 
@@ -88,12 +100,20 @@ While older versions may also work, please note that they are not officially sup
 
 ### Updating
 
-To update, follow the same steps as the initial installation for either [CEP](#cep-compatible-applications) or [UXP](#uxp-compatible-applications). Remove the previous `wakatime-adobe` folder and replace it with the latest version from the zip file.
+To update, follow the same steps as the initial installation for either [CEP](#cep-compatible-applications) or [UXP](#uxp-compatible-applications).
+Then remove the previous `wakatime-adobe` folder and replace it with the latest version from the zip file.
 
 ## Usage
 
-1. Open Adobe Photoshop after you install this plugin.
-2. Select **Plugins > Wakatime** in the toolbar or go to the **Plugins panel** and choose **Plugins > Plugins panel > Wakatime**.
+> **Important**
+> **THE PANEL WINDOW MUST NOT BE CLOSED.**
+> **YOU CAN EXPAND/COLLAPSE/DOCK OR JUST KEEP IT AS A FLOATING WINDOW BUT NEVER CLOSE THE PANEL.**
+
+1. Open the Adobe application after you install this plugin.
+2. Select in the toolbar:
+   (CEP) **Window > Extensions > Wakatime**
+   (UXP) **Plugins > Wakatime**;
+   or **Plugins panel** and choose **Plugins > Plugins panel > Wakatime**.
 3. Paste your **API key** into the input field and click the **Save** button ([Get your API key here](https://wakatime.com/api-key)).
 4. **(Optional, UXP only)** Provide your machine name ([found in your dashboard](https://wakatime.com/dashboard)) in the **Machine name** input field. Setting this field helps avoid displaying "Unknown Hostname" on your dashboard.
 5. The `status` should automatically update if the plugin is tracking time (it sends data every 2 minutes)
@@ -102,14 +122,28 @@ To update, follow the same steps as the initial installation for either [CEP](#c
 
 ### Status Meaning
 
-- **Status: Connected** - The plugin is working as intended.
-- **Status: Disconnected** - The plugin only works when you have an open file and an internet connection. Make sure you have an open file and you are not on the Home screen.
-- **Status: Unauthorized** - The provided API key is likely invalid, or you do not have permission to access the resource.
-- **Status: Unavailable** - The server responded with an `error 500` and is currently unavailable.
-- **Status: Disconnected (despite being working before)** - The plugin may have sent too many requests in a short period and hit a rate limit.
+- <img display="inline" height="15px" width="15px" alt="green status" src="https://img.shields.io/badge/%20-1bbb40?style=plastic" /> **Connected** - The plugin is working as intended.
+- <img display="inline" height="15px" width="15px" alt="orange status" src="https://img.shields.io/badge/%20-f97316?style=plastic" /> **Unauthorized** - The provided API key is likely invalid, or you do not have permission to access the resource.
+- <img display="inline" height="15px" width="15px" alt="red status" src="https://img.shields.io/badge/%20-ef4444?style=plastic" /> **Disconnected** - The plugin only works when you have an open file and an internet connection. Make sure you have an open file and you are not on the Home screen.
+- <img display="inline" height="15px" width="15px" alt="red status" src="https://img.shields.io/badge/%20-ef4444?style=plastic" /> **Unavailable** - The server responded with an `error 500` and is currently unavailable.
+- <img display="inline" height="15px" width="15px" alt="red status" src="https://img.shields.io/badge/%20-ef4444?style=plastic" /> **Disconnected (despite being working before)** - The plugin may have sent too many requests in a short period and hit a rate limit.
 
 > **Note**
 > **The status may show "Disconnected" for any connection error or bad request.**
+
+## Known Issues
+
+- Config is randomly cleared when you close the application.
+  > Sometimes the plugin storage may be completely cleared when updating the extension or the application. There's no fix from my side for this.
+
+- The connection status always shows as Disconnected
+  > Arrr. If you're sailing with the Caribbean version of the application, check if there are no rules in your Firewall that are blocking connections.
+
+- The CEP panel may not allow writing while holding the `⇧ Shift` key.
+  > Workaround: use `⇪ Caps Lock` key.
+
+- The CEP panel may not allow writing into input fields.
+  > Workaround: simply copy and paste the text.
 
 ---
 
